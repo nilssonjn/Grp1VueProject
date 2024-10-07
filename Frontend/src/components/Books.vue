@@ -5,6 +5,9 @@ import { ref, onMounted } from 'vue';
 // list of books that will be filled by api
 const books = ref([]);
 
+// contains all the books with specific values picked out
+const updatedBooks = ref([]);
+
 defineProps ({
   limit: Number
 });
