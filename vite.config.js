@@ -14,3 +14,14 @@ export default defineConfig({
     }
   }
 })
+  /*
+  server: {
+    proxy: {
+      '/api': {
+        target: 'https://openlibrary.org/search.json?q=books&limit=10',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, '')
+      }
+    }
+  }
+})*/
