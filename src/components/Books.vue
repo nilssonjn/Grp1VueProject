@@ -41,7 +41,7 @@ onMounted(async () => {
 <template>
   <h1>Books</h1>
 
-  <div class="bookList">
+<div class="bookList">
     <ul>
       <li v-for="book in books.slice(0, limit || books.length)" :key="book.key">{{ book.title }}
         <img :src="'https://covers.openlibrary.org/b/id/' + book.cover_i + '-M.jpg'" alt="book cover" />
@@ -50,6 +50,11 @@ onMounted(async () => {
       </li>
     </ul>
   </div>
+
+
+
+
+
 </template>
 
 <style scoped>
