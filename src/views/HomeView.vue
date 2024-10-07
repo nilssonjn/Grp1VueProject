@@ -1,7 +1,8 @@
 <script setup>
 
+import Books from "@/components/Books.vue";
 </script>
 
 <template>
-  <h1>Landing page</h1>
+  <Books :limit="10"  />
 </template>
