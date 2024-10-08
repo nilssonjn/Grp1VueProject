@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import router from "@/router/index.js";
+import AddToCartButton from "@/components/AddToCartButton.vue";
 
 
 // list of books that will be filled by api
@@ -54,15 +55,21 @@ onMounted(async () => {
       <li v-for="book in books.slice(0, limit || books.length)" :key="book.key">{{ book.title }}
         <img :src="'https://covers.openlibrary.org/b/id/' + book.cover_i + '-M.jpg'" alt="book cover" />
         <p>{{ book.author_name }}</p>
-        <button @click="BookDetail(book)">Köp</button>
+        <!-- AddToCartButton component usage -->
+        <AddToCartButton
+            :book="book"
+            @add-to-cart="addToCart"
+        />
       </li>
     </ul>
-  </div>
+</div>
 
-
-
-
-
+  <h2>Your Basket:</h2>
+  <ul>
+    <li v-for="(item, index) in basket" :key="index">
+      {{ item.title }} - {{ item.author_name.join(', ') }}
+    </li>
+  </ul>
 </template>
 
 <style scoped>

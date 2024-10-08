@@ -4,16 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-6-subpages
     <list default="true" id="b2fa4aa0-9ee5-451a-bf9b-98bb49e0b718" name="Changes" comment="Subpages">
-      <change afterPath="$PROJECT_DIR$/Frontend/src/components/Bookdetail.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/src/components/Books.vue" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/Books.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/router/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/views/AboutView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/views/AboutView.vue" afterDir="false" />
-
     </list>
     <list id="3ca95fe7-630c-4f55-a9b7-f4d6c2850f40" name="Changes by cyber" comment="" />
+    <list id="71d7f063-d31f-433b-96c5-1ec680b07612" name="Changes by jensnilsson" comment="">
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/Books.vue" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/Books.vue" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -41,12 +39,22 @@
     &quot;assignee&quot;: &quot;cybertobbe&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/nilssonjn/Grp1VueProject.git&quot;,
-    &quot;accountId&quot;: &quot;20f8cdf2-92cd-4632-9c36-f9c7cd957813&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/nilssonjn/Grp1VueProject",
+    "accountId": "dcc528b5-92cd-4b58-aedd-fa78505e8e70"
   }
-}</component>
+}]]></component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/Frontend/src/components/Books.vue">
+      <ranges>
+        <range start1="3" end1="3" start2="3" end2="4" changelist="b2fa4aa0-9ee5-451a-bf9b-98bb49e0b718" />
+        <range start1="56" end1="57" start2="57" end2="62" changelist="b2fa4aa0-9ee5-451a-bf9b-98bb49e0b718" />
+        <range start1="59" end1="60" start2="64" end2="65" changelist="71d7f063-d31f-433b-96c5-1ec680b07612" />
+        <range start1="61" end1="65" start2="66" end2="72" changelist="b2fa4aa0-9ee5-451a-bf9b-98bb49e0b718" />
+      </ranges>
+    </file>
+  </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 0
@@ -56,20 +64,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-6-subpages
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "6-subpages",
+    "git-widget-placeholder": "feature-buy-book",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\WebStorm 2024.2\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\WebStorm 2024.2.3\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -81,7 +88,6 @@
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Ingrid\WebstormProjects\Grp1VueProject\Frontend\src\components" />
-
     </key>
   </component>
   <component name="SharedIndexes">
@@ -124,11 +130,5 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="VcsManagerConfiguration">
-6-subpages
-    <MESSAGE value="Subpages" />
-    <option name="LAST_COMMIT_MESSAGE" value="Subpages" />
-
   </component>
 </project>
