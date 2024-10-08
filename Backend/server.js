@@ -6,19 +6,55 @@ const sequelize = new Sequelize ({
 var db = {}
 
 
-// THIS FUNCTION WILL CREATE DUMMY DATA IN DATABASE TABLE
 async function setupDB() {
     try {
         db.Task = sequelize.define('Task', {
-            text: {
+            title: {
                 type: DataTypes.STRING,
                 allowNull: false
             },
+            author: {
+                type: DataTypes.STRING,
+                allowNull: false
+            },
+            summary: {
+                type: DataTypes.STRING,
+                allowNull: false
+            },
+            stock: {
+                type: DataTypes.INTEGER,
+                allowNull: false,
+                defaultValue: 50
+            },
+            price: {
+                type: DataTypes.INTEGER,
+                allowNull: false,
+                defaultValue: 0
+            },
         });
         await sequelize.sync({ force: true });
-        await db.Task.create({ text: "Item-1-MertKadirGursoy"});
-        await db.Task.create({ text: "Item-2"});
-        await db.Task.create({ text: "Item-3"});
+
+        // Fetch data from Open Library API
+        const response = await fetch('https://openlibrary.org/search.json?q=books&limit=50');
+        if (!response.ok) {
+            console.error("Failed to fetch books. Status:", response.status);
+            return;
+        }
+        const data = await response.json();
+        const books = data.docs || [];
+
+        // Insert fetched data into the database
+        for (const book of books) {
+            await db.Task.create({
+                title: book.title,
+                summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                price: Math.floor(Math.random() * (500 - 100 + 1)) + 100,
+                stock: book.stock,
+                author: book.author_name ? book.author_name.join(', ') : 'Unknown author',
+
+
+            });
+        }
     } catch (error) {
         console.error(error);
     }
