@@ -9,8 +9,8 @@ const books = ref([]);
 // contains all the books with specific values picked out
 const updatedBooks = ref([]);
 
-function viewBookDetail(book) {
-  router.push({ name: 'bookdetail', params: { id: book.key.split('/').pop() } }); // Skickar bara ID
+function BookDetail(book) {
+  router.push({ name: 'bookdetail', params: { id: book.key.split('/').pop() } });
 }
 
 defineProps ({
@@ -52,9 +52,9 @@ onMounted(async () => {
 <div class="bookList">
     <ul>
       <li v-for="book in books.slice(0, limit || books.length)" :key="book.key">{{ book.title }}
-        <img :src="'https://covers.openlibrary.org/b/id/' + book.cover_i + '-M.jpg'" alt="book cover" />
+        <img :src="'https://covers.openlibrary.org/b/id/' + book.cover_i + '-M.jpg'" alt="book cover" @click="BookDetail(book)" />
         <p>{{ book.author_name }}</p>
-        <button @click="BookDetail(book)">Köp</button>
+        <button>Köp</button>
       </li>
     </ul>
   </div>
@@ -73,5 +73,7 @@ onMounted(async () => {
   grid-template-columns: repeat(5, 1fr);
   border: #181818 solid 1px;
 }
+
+
 
 </style>
