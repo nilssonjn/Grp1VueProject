@@ -1,0 +1,49 @@
+<script setup>
+import { useRoute } from "vue-router";
+import { onMounted, ref, defineProps } from "vue";
+
+const route = useRoute();
+const bookId = route.params.id; // Använd detta ID för att hämta bokinformation
+
+const book = ref(null);
+
+
+
+onMounted(async () => {
+  try {
+    const response = await fetch(`https://openlibrary.org/works/${bookId}.json`); // Använd bookId här
+    if (!response.ok) {
+      console.error("Failed to fetch book. Status:", response.status);
+      return;
+    }
+
+    const data = await response.json();
+
+    if (data) {
+      book.value = data;
+    } else {
+      console.log('No book data found');
+    }
+
+    console.log('Book fetched successfully:', book.value);
+
+  } catch (error) {
+    console.error(error);
+  }
+});
+</script>
+
+<template>
+  <div v-if="book">
+    <h1>{{ book.title }}</h1>
+    <img :src="'https://covers.openlibrary.org/b/id/' + (book.cover_id || book.covers[0]) + '-L.jpg'" alt="book cover" />
+    <p>{{ book.description }}</p>
+  </div>
+  <div v-else>
+    <p>Laddar bokinformation...</p>
+  </div>
+</template>
+
+<style scoped>
+
+</style>
