@@ -4,12 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b2fa4aa0-9ee5-451a-bf9b-98bb49e0b718" name="Changes" comment="">
+    <list default="true" id="b2fa4aa0-9ee5-451a-bf9b-98bb49e0b718" name="Changes" comment="inserting into database working">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/database.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/database.sqlite" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/server.js" afterDir="false" />
     </list>
-    <list id="eee877b4-7a46-4964-8e8b-cecbe98d18fa" name="Changes by jensnilsson" comment="" />
+    <list id="eee877b4-7a46-4964-8e8b-cecbe98d18fa" name="Changes by jensnilsson" comment="">
+      <change beforePath="$PROJECT_DIR$/Backend/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/server.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -42,6 +44,21 @@
     &quot;accountId&quot;: &quot;20f8cdf2-92cd-4632-9c36-f9c7cd957813&quot;
   }
 }</component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/Backend/server.js">
+      <ranges>
+        <range start1="10" end1="11" start2="10" end2="11" changelist="b2fa4aa0-9ee5-451a-bf9b-98bb49e0b718" />
+        <range start1="33" end1="33" start2="33" end2="37" changelist="b2fa4aa0-9ee5-451a-bf9b-98bb49e0b718" />
+        <range start1="47" end1="48" start2="51" end2="52" changelist="b2fa4aa0-9ee5-451a-bf9b-98bb49e0b718" />
+        <range start1="53" end1="55" start2="57" end2="58" changelist="b2fa4aa0-9ee5-451a-bf9b-98bb49e0b718" />
+        <range start1="79" end1="82" start2="82" end2="85" changelist="b2fa4aa0-9ee5-451a-bf9b-98bb49e0b718" />
+        <range start1="85" end1="92" start2="88" end2="134" changelist="b2fa4aa0-9ee5-451a-bf9b-98bb49e0b718" />
+        <range start1="95" end1="97" start2="137" end2="139" changelist="eee877b4-7a46-4964-8e8b-cecbe98d18fa" />
+        <range start1="98" end1="99" start2="140" end2="141" changelist="b2fa4aa0-9ee5-451a-bf9b-98bb49e0b718" />
+        <range start1="108" end1="109" start2="150" end2="151" changelist="b2fa4aa0-9ee5-451a-bf9b-98bb49e0b718" />
+      </ranges>
+    </file>
+  </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 0
@@ -91,11 +108,24 @@
       <updated>1728301424914</updated>
       <workItem from="1728301427480" duration="1391000" />
       <workItem from="1728326071611" duration="667000" />
-      <workItem from="1728373224819" duration="4195000" />
+      <workItem from="1728373224819" duration="5683000" />
     </task>
+    <task id="LOCAL-00001" summary="inserting into database working">
+      <option name="closed" value="true" />
+      <created>1728377485343</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1728377485343</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="inserting into database working" />
+    <option name="LAST_COMMIT_MESSAGE" value="inserting into database working" />
   </component>
 </project>
