@@ -1,10 +1,10 @@
 <script setup>
+import Bookdetail from '../components/Bookdetail.vue';
+
 
 </script>
 
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
-  </div>
+   <Bookdetail />
 </template>
 

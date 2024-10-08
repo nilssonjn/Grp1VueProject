@@ -1,5 +1,6 @@
 <script setup>
 import { ref, onMounted } from 'vue';
+import router from "@/router/index.js";
 
 
 // list of books that will be filled by api
@@ -7,6 +8,10 @@ const books = ref([]);
 
 // contains all the books with specific values picked out
 const updatedBooks = ref([]);
+
+function viewBookDetail(book) {
+  router.push({ name: 'bookdetail', params: { id: book.key.split('/').pop() } }); // Skickar bara ID
+}
 
 defineProps ({
   limit: Number
@@ -49,7 +54,7 @@ onMounted(async () => {
       <li v-for="book in books.slice(0, limit || books.length)" :key="book.key">{{ book.title }}
         <img :src="'https://covers.openlibrary.org/b/id/' + book.cover_i + '-M.jpg'" alt="book cover" />
         <p>{{ book.author_name }}</p>
-      <button @click="addToCheckout(books)">Köp</button>
+        <button @click="BookDetail(book)">Köp</button>
       </li>
     </ul>
   </div>
