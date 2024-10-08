@@ -37,6 +37,9 @@ onMounted(async () => {
   <div v-if="book">
     <h1>{{ book.title }}</h1>
     <img :src="'https://covers.openlibrary.org/b/id/' + (book.cover_id || book.covers[0]) + '-L.jpg'" alt="book cover" />
+    <p>{{ book.author_name || 'Ingen författare tillgänglig' }}</p>
+    <p>Publiceringsår: {{ latest_revision || 'Inget publiceringsdatum tillgänglig' }}</p>
+    <p>{{book.price}}</p>
     <p>{{ book.description }}</p>
   </div>
   <div v-else>
