@@ -19,6 +19,13 @@ const removeBook = (index) => {
   window.dispatchEvent(new Event('basket-updated')); // Ensure the event is dispatched when removing a book
 };
 
+const checkOutBooks = () => {
+  cartItems.value.forEach(book => {
+    console.log(`Checking out book: ${book.title}`);
+    // Add your checkout logic here
+    });
+  };
+
 </script>
 
 <template>
