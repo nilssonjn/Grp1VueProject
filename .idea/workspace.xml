@@ -4,15 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b2fa4aa0-9ee5-451a-bf9b-98bb49e0b718" name="Changes" comment="Subpages">
+    <list default="true" id="b2fa4aa0-9ee5-451a-bf9b-98bb49e0b718" name="Changes" comment="Add BookDetails page &#10;&#10;Co-authored-by: Ingrid Hammargren &lt;ingrid.hammargren@iths.se&gt;">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/database.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/database.sqlite" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/server.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/src/components/Bookdetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/Bookdetail.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/src/components/Books.vue" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/Books.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/router/index.js" afterDir="false" />
     </list>
+    <list id="77cc6d58-1f21-4b19-ad02-977c1dc5265b" name="Changes by augus" comment="" />
     <list id="3ca95fe7-630c-4f55-a9b7-f4d6c2850f40" name="Changes by cyber" comment="" />
+    <list id="77dde8d1-bd3e-486e-8be6-27ecdabcbb0f" name="Changes by Ingrid" comment="">
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/Bookdetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/Bookdetail.vue" afterDir="false" />
+    </list>
+    <list id="1be2590c-4a35-44f2-963e-7c7fbbbae6d6" name="Changes by jensnilsson" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -46,6 +51,20 @@
     &quot;accountId&quot;: &quot;20f8cdf2-92cd-4632-9c36-f9c7cd957813&quot;
   }
 }</component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/Frontend/src/components/Bookdetail.vue">
+      <ranges>
+        <range start1="9" end1="10" start2="9" end2="10" changelist="b2fa4aa0-9ee5-451a-bf9b-98bb49e0b718" />
+        <range start1="13" end1="15" start2="13" end2="17" changelist="77dde8d1-bd3e-486e-8be6-27ecdabcbb0f" />
+        <range start1="29" end1="30" start2="31" end2="32" changelist="b2fa4aa0-9ee5-451a-bf9b-98bb49e0b718" />
+        <range start1="39" end1="41" start2="41" end2="43" changelist="b2fa4aa0-9ee5-451a-bf9b-98bb49e0b718" />
+        <range start1="43" end1="44" start2="45" end2="46" changelist="b2fa4aa0-9ee5-451a-bf9b-98bb49e0b718" />
+      </ranges>
+    </file>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 0
@@ -117,7 +136,14 @@
       <option name="project" value="LOCAL" />
       <updated>1728379380845</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL−00003" summary="Add BookDetails page &#10;&#10;Co-authored-by: Ingrid Hammargren &lt;ingrid.hammargren@iths.se&gt;">
+      <option name="closed" value="true" />
+      <created>1728470431996</created>
+      <option name="number" value="LOCAL−00003" />
+      <option name="presentableId" value="LOCAL−00003" />
+      <updated>1728470431996</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -133,5 +159,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Add BookDetails page &#10;&#10;Co-authored-by: Ingrid Hammargren &lt;ingrid.hammargren@iths.se&gt;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add BookDetails page &#10;&#10;Co-authored-by: Ingrid Hammargren &lt;ingrid.hammargren@iths.se&gt;" />
   </component>
 </project>

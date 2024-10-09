@@ -11,7 +11,7 @@ const updatedBooks = ref([]);
 
 function BookDetail(book) {
   //router.push({ name: 'bookdetail', params: { id: book.key.split('/').pop() } });
-  router.push({ name: 'bookdetail', params: { id: book.id }});
+  router.push({ name: 'books', params: { id: book.id }});
 }
 
 defineProps ({
@@ -54,8 +54,7 @@ onMounted(async () => {
     <ul>
       <li v-for="book in books.slice(0, limit)" :key="book.id">
         <h3>{{ book.title }}</h3>
-        <img :src="book.image" alt="book cover" @click="BookDetail(book)"
-        />
+        <img :src="book.image" alt="book cover" @click="BookDetail(book)"/>
         <p>{{ book.author }}</p>
         <button @click="updateStock(book.id, book.stock - 1)" :disabled="book.stock <= 0">Köp</button>
       </li>

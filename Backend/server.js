@@ -107,6 +107,23 @@ async function startServer() {
                 });
         });
 
+        app.get('/api/books/:id', (req, res) => {
+            db.BookList.findByPk(req.params.id)
+                .then(book => {
+                    if (book) {
+                        res.json(book);
+
+                    } else {
+                        res.sendStatus(404); // Not Found
+                    }
+                })
+                .catch(error => {
+                    console.error(error);
+                    res.sendStatus(500); // Internal Server Error
+                });
+        });
+
+
         app.listen(port, () => {
             console.log(`App listening on port ${port}`)
         })
