@@ -3,15 +3,22 @@ import { ref, onMounted } from 'vue';
 
 const cartItems = ref([]);
 
-onMounted(() => {
+const updateCart = () => {
   const storedBooks = JSON.parse(localStorage.getItem('books')) || [];
   cartItems.value = storedBooks;
+};
+
+onMounted(() => {
+  updateCart();
+  window.addEventListener('basket-updated', updateCart);
 });
 
 const removeBook = (index) => {
   cartItems.value.splice(index, 1);
   localStorage.setItem('books', JSON.stringify(cartItems.value));
+  window.dispatchEvent(new Event('basket-updated')); // Ensure the event is dispatched when removing a book
 };
+
 </script>
 
 <template>
