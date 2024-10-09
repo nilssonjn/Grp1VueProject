@@ -41,8 +41,8 @@ onMounted(async () => {
     console.error(error);
   }
   console.log(books.value);
-});
 
+});
 
 </script>
 

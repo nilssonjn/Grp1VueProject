@@ -1,17 +1,11 @@
 <script setup>
-import { ref, defineEmits } from 'vue';
+import { defineEmits } from 'vue';
 
 const emit = defineEmits(['add-to-cart']);
 
 const props = defineProps  ({
   book: Object,
 });
-
-const addBook = (book) => {
-  console.log('Add to cart clicked: ', props.book);
-  emit('add-to-cart');
-  basket.value.push(book);
-};
 
 const addBook = () => {
   console.log('Add to cart clicked: ', props.book);
