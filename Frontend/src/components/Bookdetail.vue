@@ -7,11 +7,12 @@ const bookId = route.params.id; // Använd detta ID för att hämta bokinformati
 
 const book = ref(null);
 
-
+const props = defineProps(['id']);
 
 onMounted(async () => {
   try {
-    const response = await fetch(`https://openlibrary.org/works/${bookId}.json`); // Använd bookId här
+    //const response = await fetch(`http://localhost:3001/api/books/${bookId}`); // Använd bookId här
+    const response = await fetch(`http://localhost:3001/api/books/${props.id}`);
     if (!response.ok) {
       console.error("Failed to fetch book. Status:", response.status);
       return;

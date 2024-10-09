@@ -10,7 +10,8 @@ const books = ref([]);
 const updatedBooks = ref([]);
 
 function BookDetail(book) {
-  router.push({ name: 'bookdetail', params: { id: book.key.split('/').pop() } });
+  //router.push({ name: 'bookdetail', params: { id: book.key.split('/').pop() } });
+  router.push({ name: 'bookdetail', params: { id: book.id }});
 }
 
 defineProps ({
@@ -20,8 +21,8 @@ defineProps ({
 onMounted(async () => {
   try {
    // const response = await fetch("https://openlibrary.org/developers/api");
-    const response = await fetch('https://openlibrary.org/search.json?q=books&limit=50');
-
+    //const response = await fetch('https://openlibrary.org/search.json?q=books&limit=50');
+    const response = await fetch('http://localhost:3001/api/books');
     // Check for successful response
     if (!response.ok) {
       console.error("Failed to fetch books. Status:", response.status);
@@ -32,7 +33,8 @@ onMounted(async () => {
     const data = await response.json();
 
     // Update books with fetched data, handling potential absence of "docs" property
-    books.value = data.docs || [];
+    //books.value = data.docs || [];
+    books.value = data;
 
     console.log('Books fetched successfully:', books.value);
 
@@ -48,21 +50,17 @@ onMounted(async () => {
 
 <template>
   <h1>Books</h1>
-
-<div class="bookList">
+  <div class="bookList">
     <ul>
-      <li v-for="book in books.slice(0, limit || books.length)" :key="book.key">{{ book.title }}
-        <img :src="'https://covers.openlibrary.org/b/id/' + book.cover_i + '-M.jpg'" alt="book cover" @click="BookDetail(book)" />
-        <p>{{ book.author_name }}</p>
-        <button>Köp</button>
+      <li v-for="book in books.slice(0, limit)" :key="book.id">
+        <h3>{{ book.title }}</h3>
+        <img :src="book.image" alt="book cover" @click="BookDetail(book)"
+        />
+        <p>{{ book.author }}</p>
+        <button @click="updateStock(book.id, book.stock - 1)" :disabled="book.stock <= 0">Köp</button>
       </li>
     </ul>
   </div>
-
-
-
-
-
 </template>
 
 <style scoped>
