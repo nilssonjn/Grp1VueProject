@@ -64,12 +64,6 @@ onMounted(async () => {
     </ul>
 </div>
 
-  <h2>Your Basket:</h2>
-  <ul>
-    <li v-for="(item, index) in basket" :key="index">
-      {{ item.title }} - {{ item.author_name.join(', ') }}
-    </li>
-  </ul>
 </template>
 
 <style scoped>

@@ -2,7 +2,6 @@
 import { ref, defineEmits } from 'vue';
 
 const emit = defineEmits(['add-to-cart']);
-const basket = ref([]);
 
 const props = defineProps  ({
   book: Object,
@@ -14,8 +13,16 @@ const addBook = (book) => {
   basket.value.push(book);
 };
 
+const addBook = () => {
+  console.log('Add to cart clicked: ', props.book);
+  emit('add-to-cart');
+  // save the props book to localstorage?
+  const booksInStorage = JSON.parse(localStorage.getItem('books')) || [];
+  booksInStorage.push(props.book);
+  localStorage.setItem('books', JSON.stringify(booksInStorage));
+  emit('basket-updated'); // Emit event after updating local storage
 
-
+};
 </script>
 
 <template>
