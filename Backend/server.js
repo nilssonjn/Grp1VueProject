@@ -37,6 +37,39 @@ async function setupDB() {
         });
         await sequelize.sync({force: true});
 
+        // Define test books -------------------------- TEST REMOVE LATER
+        const testBooks = [
+            {
+                title: "Test Book 1",
+                author: "Author 1",
+                summary: "Summary of Test Book 1",
+                stock: 10,
+                price: 100,
+                image: "https://example.com/image1.jpg"
+            },
+            {
+                title: "Test Book 2",
+                author: "Author 2",
+                summary: "Summary of Test Book 2",
+                stock: 20,
+                price: 200,
+                image: "https://example.com/image2.jpg"
+            },
+            {
+                title: "Test Book 3",
+                author: "Author 3",
+                summary: "Summary of Test Book 3",
+                stock: 30,
+                price: 300,
+                image: "https://example.com/image3.jpg"
+            }
+        ];
+
+        // Insert test books into the database
+        for (const book of testBooks) {
+            await db.BookList.create(book);
+        }
+
         // Fetch data from Open Library API
         const response = await fetch('https://openlibrary.org/search.json?q=books&limit=50');
         if (!response.ok) {
