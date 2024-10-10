@@ -19,12 +19,43 @@ const removeBook = (index) => {
   window.dispatchEvent(new Event('basket-updated')); // Ensure the event is dispatched when removing a book
 };
 
-const checkOutBooks = () => {
-  cartItems.value.forEach(book => {
-    console.log(`Checking out book: ${book.title}`);
-    // Add your checkout logic here
-    });
-  };
+
+const buyBooks = async () => {
+  try {
+    for (const book of cartItems.value) {
+      // Fetch the current stock value from the database
+      const response = await fetch(`http://localhost:3001/api/books/${book.id}`);
+      if (!response.ok) {
+        throw new Error(`Failed to fetch stock for book ID ${book.id}`);
+      }
+      const bookData = await response.json();
+
+      // Update the stock value
+      const newStock = bookData.stock - 1;
+
+      // Send the updated stock value in the PUT request
+      const updateResponse = await fetch(`http://localhost:3001/api/books/stock/${book.id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          stock: newStock
+        })
+      });
+
+      if (!updateResponse.ok) {
+        throw new Error(`Failed to update stock for book ID ${book.id}`);
+      }
+    }
+    alert('Books bought!');
+    cartItems.value = [];
+    localStorage.setItem('books', JSON.stringify(cartItems.value));
+    window.dispatchEvent(new Event('basket-updated')); // Ensure the event is dispatched when buying books
+  } catch (error) {
+    console.error('Failed to update stock:', error);
+  }
+};
 
 </script>
 
@@ -36,6 +67,7 @@ const checkOutBooks = () => {
         <h2>{{ book.title }}</h2>
         <button @click="removeBook(index)">Remove</button>
       </li>
+      <button @click="buyBooks">Buy</button>
     </ul>
   </div>
 </template>
