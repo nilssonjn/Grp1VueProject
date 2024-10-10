@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import router from "@/router/index.js";
+import AddToCartButton from "@/components/AddToCartButton.vue";
 
 
 // list of books that will be filled by api
@@ -42,8 +43,8 @@ onMounted(async () => {
     console.error(error);
   }
   console.log(books.value);
-});
 
+});
 
 </script>
 
@@ -52,6 +53,7 @@ onMounted(async () => {
   <h1>Books</h1>
   <div class="bookList">
     <ul>
+
       <li v-for="book in books.slice(0, limit)" :key="book.id">
         <h3>{{ book.title }}</h3>
         <img :src="book.image" alt="book cover" @click="BookDetail(book)"/>
@@ -60,6 +62,7 @@ onMounted(async () => {
       </li>
     </ul>
   </div>
+
 </template>
 
 <style scoped>

@@ -4,6 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+
     <list default="true" id="b2fa4aa0-9ee5-451a-bf9b-98bb49e0b718" name="Changes" comment="Add BookDetails page &#10;&#10;Co-authored-by: Ingrid Hammargren &lt;ingrid.hammargren@iths.se&gt;">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/database.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/database.sqlite" afterDir="false" />
@@ -11,6 +12,13 @@
       <change beforePath="$PROJECT_DIR$/Frontend/src/components/Bookdetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/Bookdetail.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/src/components/Books.vue" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/Books.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/router/index.js" afterDir="false" />
+
+    <list default="true" id="b2fa4aa0-9ee5-451a-bf9b-98bb49e0b718" name="Changes" comment="updates ShoppingCart.vue&#10;&#10;Co-authored-by: August Rydnell &lt;august.ryd@gmail.com&gt;&#10;Co-authored-by: Jens Nilsson &lt;jn.jensnilsson@gmail.com&gt;">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/AddToCartButton.vue" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/AddToCartButton.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/ShoppingCart.vue" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/ShoppingCart.vue" afterDir="false" />
+
+
     </list>
     <list id="77cc6d58-1f21-4b19-ad02-977c1dc5265b" name="Changes by augus" comment="" />
     <list id="3ca95fe7-630c-4f55-a9b7-f4d6c2850f40" name="Changes by cyber" comment="" />
@@ -47,8 +55,8 @@
 }</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/nilssonjn/Grp1VueProject.git&quot;,
-    &quot;accountId&quot;: &quot;20f8cdf2-92cd-4632-9c36-f9c7cd957813&quot;
+    &quot;url&quot;: &quot;https://github.com/nilssonjn/Grp1VueProject&quot;,
+    &quot;accountId&quot;: &quot;dcc528b5-92cd-4b58-aedd-fa78505e8e70&quot;
   }
 }</component>
   <component name="LineStatusTrackerManager">
@@ -74,6 +82,7 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
@@ -88,13 +97,31 @@
     "nodejs_package_manager_path": "npm",
     "ts.external.directory.path": "C:\\Program Files\\JetBrains\\WebStorm 2024.2\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
     "vue.rearranger.settings.migration": "true"
+
+
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature-buy-book&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\WebStorm 2024.2.3\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+
+
   },
-  "keyToStringList": {
-    "vue.recent.templates": [
-      "Vue Composition API Component"
+  &quot;keyToStringList&quot;: {
+    &quot;vue.recent.templates&quot;: [
+      &quot;Vue Composition API Component&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Ingrid\WebstormProjects\Grp1VueProject\Frontend\src\components" />
@@ -136,6 +163,7 @@
       <option name="project" value="LOCAL" />
       <updated>1728379380845</updated>
     </task>
+
     <task id="LOCAL−00003" summary="Add BookDetails page &#10;&#10;Co-authored-by: Ingrid Hammargren &lt;ingrid.hammargren@iths.se&gt;">
       <option name="closed" value="true" />
       <created>1728470431996</created>
@@ -144,21 +172,45 @@
       <updated>1728470431996</updated>
     </task>
     <option name="localTasksCounter" value="4" />
+
+    <task id="LOCAL-00003" summary="books saved to localstorage&#10;&#10;Co-authored-by: August Rydnell &lt;august.ryd@gmail.com&gt;&#10;Co-authored-by: Jens Nilsson &lt;jn.jensnilsson@gmail.com&gt;">
+      <option name="closed" value="true" />
+      <created>1728470507014</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1728470507014</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Changes by jensnilsson">
+      <option name="closed" value="true" />
+      <created>1728470511763</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1728470511763</updated>
+    </task>
+    <task id="LOCAL-00005" summary="updates ShoppingCart.vue&#10;&#10;Co-authored-by: August Rydnell &lt;august.ryd@gmail.com&gt;&#10;Co-authored-by: Jens Nilsson &lt;jn.jensnilsson@gmail.com&gt;">
+      <option name="closed" value="true" />
+      <created>1728471508426</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1728471508426</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
+
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
+feature-buy-book
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="books saved to localstorage&#10;&#10;Co-authored-by: August Rydnell &lt;august.ryd@gmail.com&gt;&#10;Co-authored-by: Jens Nilsson &lt;jn.jensnilsson@gmail.com&gt;" />
+    <MESSAGE value="Changes by jensnilsson" />
+    <MESSAGE value="updates ShoppingCart.vue&#10;&#10;Co-authored-by: August Rydnell &lt;august.ryd@gmail.com&gt;&#10;Co-authored-by: Jens Nilsson &lt;jn.jensnilsson@gmail.com&gt;" />
+    <option name="LAST_COMMIT_MESSAGE" value="updates ShoppingCart.vue&#10;&#10;Co-authored-by: August Rydnell &lt;august.ryd@gmail.com&gt;&#10;Co-authored-by: Jens Nilsson &lt;jn.jensnilsson@gmail.com&gt;" />
+
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Add BookDetails page &#10;&#10;Co-authored-by: Ingrid Hammargren &lt;ingrid.hammargren@iths.se&gt;" />
