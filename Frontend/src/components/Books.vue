@@ -58,7 +58,10 @@ onMounted(async () => {
         <h3>{{ book.title }}</h3>
         <img :src="book.image" alt="book cover" @click="BookDetail(book)"/>
         <p>{{ book.author }}</p>
-        <button @click="updateStock(book.id, book.stock - 1)" :disabled="book.stock <= 0">Köp</button>
+        <AddToCartButton
+            :book="book"
+            @add-to-cart="addToCart"
+        />
       </li>
     </ul>
   </div>
