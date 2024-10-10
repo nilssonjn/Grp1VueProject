@@ -7,11 +7,14 @@ const bookId = route.params.id; // Använd detta ID för att hämta bokinformati
 
 const book = ref(null);
 
-
+//const props = defineProps(['id']);
 
 onMounted(async () => {
   try {
-    const response = await fetch(`https://openlibrary.org/works/${bookId}.json`); // Använd bookId här
+    console.log('Fetching book with ID:', bookId);
+
+    const response = await fetch(`http://localhost:3001/api/books/${bookId}`); // Använd bookId här
+    //const response = await fetch(`http://localhost:3001/api/books/${props.id}`);
     if (!response.ok) {
       console.error("Failed to fetch book. Status:", response.status);
       return;
@@ -26,7 +29,7 @@ onMounted(async () => {
     }
 
     console.log('Book fetched successfully:', book.value);
-
+    console.log('Fetching book with ID:', bookId);
   } catch (error) {
     console.error(error);
   }
@@ -36,11 +39,11 @@ onMounted(async () => {
 <template>
   <div v-if="book">
     <h1>{{ book.title }}</h1>
-    <img :src="'https://covers.openlibrary.org/b/id/' + (book.cover_id || book.covers[0]) + '-L.jpg'" alt="book cover" />
-    <p>{{ book.author_name || 'Ingen författare tillgänglig' }}</p>
+    <img :src="book.image" alt="book cover" />
+    <p>{{ book.author || 'Ingen författare tillgänglig' }}</p>
     <p>Publiceringsår: {{ latest_revision || 'Inget publiceringsdatum tillgänglig' }}</p>
     <p>{{book.price}}</p>
-    <p>{{ book.description }}</p>
+    <p>{{ book.summary }}</p>
   </div>
   <div v-else>
     <p>Laddar bokinformation...</p>

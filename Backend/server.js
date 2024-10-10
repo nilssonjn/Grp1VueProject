@@ -69,6 +69,8 @@ async function startServer() {
         const port = 3001
         const express = require('express')
         const app = express()
+        const cors = require('cors');
+        app.use(cors());
         app.use(express.json())
         app.get('/', (req, res) => {
             res.send('hello world')
@@ -104,6 +106,23 @@ async function startServer() {
                     res.sendStatus(500);
                 });
         });
+
+        app.get('/api/books/:id', (req, res) => {
+            db.BookList.findByPk(req.params.id)
+                .then(book => {
+                    if (book) {
+                        res.json(book);
+
+                    } else {
+                        res.sendStatus(404); // Not Found
+                    }
+                })
+                .catch(error => {
+                    console.error(error);
+                    res.sendStatus(500); // Internal Server Error
+                });
+        });
+
 
         app.listen(port, () => {
             console.log(`App listening on port ${port}`)

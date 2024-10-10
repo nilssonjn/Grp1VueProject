@@ -19,10 +19,10 @@ const router = createRouter({
       component: () => import('../views/AboutView.vue')
     },
     {
-      path: '/bookdetail/:id',
-      name:'bookdetail',
+      path: '/books/:id',
+      name:'books',
       component: Bookdetail,
-      props: true
+      //props: true
     }
   ]
 })
