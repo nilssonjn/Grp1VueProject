@@ -34,6 +34,15 @@ async function setupDB() {
                 type: DataTypes.STRING,
                 allowNull: true
             },
+            isbn: {
+                type: DataTypes.INTEGER,
+                allowNull: true
+            },
+
+            publishyear: {
+                type: DataTypes.INTEGER,
+                allowNull: true
+            }
         });
         await sequelize.sync({force: true});
 
@@ -100,7 +109,11 @@ async function setupDB() {
                 price: Math.floor(Math.random() * (500 - 100 + 1)) + 100,
                 stock: Math.floor(Math.random() * 100) + 1, // Random stock value
                 author: Array.isArray(detailedBook.authors) ? detailedBook.authors.join(', ') : 'Unknown author',
-                image: book.imageLinks ? book.imageLinks.thumbnail : null
+
+                image: book.imageLinks ? book.imageLinks.thumbnail : null,
+                isbn: detailedBook.industryIdentifiers ? detailedBook.industryIdentifiers.map(id => id.identifier).join(', ') : 'Unknown ISBN',
+                publishyear: detailedBook.publishedDate ? detailedBook.publishedDate.split('-')[0] : 'Unknown publish year'
+
             });
         }
     } catch (error) {
