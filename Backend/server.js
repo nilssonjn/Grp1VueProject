@@ -82,12 +82,24 @@ async function setupDB() {
         // Insert fetched data into the database
         for (const item of books) {
             const book = item.volumeInfo;
+            const selfLink = item.selfLink;
+
+            // Fetch detailed information using selfLink
+            const detailResponse = await fetch(selfLink);
+            if (!detailResponse.ok) {
+                console.error("Failed to fetch book details. Status:", detailResponse.status);
+                continue;
+            }
+
+            const detailData = await detailResponse.json();
+            const detailedBook = detailData.volumeInfo;
+
             await db.BookList.create({
                 title: book.title,
                 summary: book.description || "No description available.",
                 price: Math.floor(Math.random() * (500 - 100 + 1)) + 100,
                 stock: Math.floor(Math.random() * 100) + 1, // Random stock value
-                author: book.authors ? book.authors.join(', ') : 'Unknown author',
+                author: Array.isArray(detailedBook.authors) ? detailedBook.authors.join(', ') : 'Unknown author',
                 image: book.imageLinks ? book.imageLinks.thumbnail : null
             });
         }
