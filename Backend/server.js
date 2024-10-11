@@ -34,6 +34,15 @@ async function setupDB() {
                 type: DataTypes.STRING,
                 allowNull: true
             },
+            isbn: {
+                type: DataTypes.INTEGER,
+                allowNull: true
+            },
+
+            publishyear: {
+                type: DataTypes.INTEGER,
+                allowNull: true
+            }
         });
         await sequelize.sync({force: true});
 
@@ -82,13 +91,27 @@ async function setupDB() {
         // Insert fetched data into the database
         for (const item of books) {
             const book = item.volumeInfo;
+            const selfLink = item.selfLink;
+
+            // Fetch detailed information using selfLink
+            const detailResponse = await fetch(selfLink);
+            if (!detailResponse.ok) {
+                console.error("Failed to fetch book details. Status:", detailResponse.status);
+                continue;
+            }
+
+            const detailData = await detailResponse.json();
+            const detailedBook = detailData.volumeInfo;
+
             await db.BookList.create({
                 title: book.title,
                 summary: book.description || "No description available.",
                 price: Math.floor(Math.random() * (500 - 100 + 1)) + 100,
                 stock: Math.floor(Math.random() * 100) + 1, // Random stock value
                 author: Array.isArray(book.authors) ? book.authors.join(', ') : 'Unknown author',
-                image: book.imageLinks ? book.imageLinks.thumbnail : null
+                image: book.imageLinks ? book.imageLinks.thumbnail : null,
+                isbn: detailedBook.industryIdentifiers ? detailedBook.industryIdentifiers.map(id => id.identifier).join(', ') : 'Unknown ISBN',
+                publishyear: detailedBook.publishedDate ? detailedBook.publishedDate.split('-')[0] : 'Unknown publish year'
             });
         }
     } catch (error) {
