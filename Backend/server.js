@@ -108,7 +108,7 @@ async function setupDB() {
                 summary: book.description || "No description available.",
                 price: Math.floor(Math.random() * (500 - 100 + 1)) + 100,
                 stock: Math.floor(Math.random() * 100) + 1, // Random stock value
-                author: Array.isArray(book.authors) ? book.authors.join(', ') : 'Unknown author',
+                author: Array.isArray(detailedBook.authors) ? detailedBook.authors.join(', ') : 'Unknown author',
                 image: book.imageLinks ? book.imageLinks.thumbnail : null,
                 isbn: detailedBook.industryIdentifiers ? detailedBook.industryIdentifiers.map(id => id.identifier).join(', ') : 'Unknown ISBN',
                 publishyear: detailedBook.publishedDate ? detailedBook.publishedDate.split('-')[0] : 'Unknown publish year'
