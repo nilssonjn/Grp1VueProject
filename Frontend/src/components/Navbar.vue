@@ -1,9 +1,15 @@
 <script setup>
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/vue/24/outline'
+import { RouterLink, useRoute } from "vue-router";
+
+const isActiveLink = (routePath) => {
+  const route = useRoute();
+  return route.path === routePath;
+}
 
 const navigation = [
-  { name: 'Dashboard', href: '#', current: true },
+  { name: 'Home', to: '/', current: true },
   { name: 'Team', href: '#', current: false },
   { name: 'Projects', href: '#', current: false },
   { name: 'Calendar', href: '#', current: false },
@@ -29,7 +35,18 @@ const navigation = [
           </div>
           <div class="hidden sm:ml-6 sm:block">
             <div class="flex space-x-4">
-              <a v-for="item in navigation" :key="item.name" :href="item.href" :class="[item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white', 'rounded-md px-3 py-2 text-sm font-medium']" :aria-current="item.current ? 'page' : undefined">{{ item.name }}</a>
+              <RouterLink
+                  v-for="item in navigation"
+                  :key="item.name"
+                  :to="item.to"
+                  :class="[
+      isActiveLink(item.to) ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+      'rounded-md px-3 py-2 text-sm font-medium'
+    ]"
+                  :aria-current="item.current ? 'page' : undefined"
+              >
+                {{ item.name }}
+              </RouterLink>
             </div>
           </div>
         </div>
