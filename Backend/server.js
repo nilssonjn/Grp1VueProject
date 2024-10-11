@@ -37,7 +37,7 @@ async function setupDB() {
         });
         await sequelize.sync({force: true});
 
-        // Define test books -------------------------- TEST REMOVE LATER
+        /*// Define test books -------------------------- TEST REMOVE LATER
         const testBooks = [
             {
                 title: "Test Book 1",
@@ -45,7 +45,7 @@ async function setupDB() {
                 summary: "Summary of Test Book 1",
                 stock: 10,
                 price: 100,
-                image: "https://example.com/image1.jpg"
+                image: "https://marketplace.canva.com/EAFaQMYuZbo/1/0/1003w/canva-brown-rusty-mystery-novel-book-cover-hG1QhA7BiBU.jpg"
             },
             {
                 title: "Test Book 2",
@@ -53,7 +53,7 @@ async function setupDB() {
                 summary: "Summary of Test Book 2",
                 stock: 20,
                 price: 200,
-                image: "https://example.com/image2.jpg"
+                image: "https://marketplace.canva.com/EAFf0E5urqk/1/0/1003w/canva-blue-and-green-surreal-fiction-book-cover-53S3IzrNxvY.jpg"
             },
             {
                 title: "Test Book 3",
@@ -61,33 +61,34 @@ async function setupDB() {
                 summary: "Summary of Test Book 3",
                 stock: 30,
                 price: 300,
-                image: "https://example.com/image3.jpg"
+                image: "https://marketplace.canva.com/EAFPHUaBrFc/1/0/1003w/canva-black-and-white-modern-alone-story-book-cover-QHBKwQnsgzs.jpg"
             }
         ];
 
         // Insert test books into the database
         for (const book of testBooks) {
             await db.BookList.create(book);
-        }
+        }*/
 
-        // Fetch data from Open Library API
-        const response = await fetch('https://openlibrary.org/search.json?q=books&limit=50');
+        // Fetch data from Google Books API
+        const response = await fetch('https://www.googleapis.com/books/v1/volumes?q=books&maxResults=40');
         if (!response.ok) {
             console.error("Failed to fetch books. Status:", response.status);
             return;
         }
         const data = await response.json();
-        const books = data.docs || [];
+        const books = data.items || [];
 
         // Insert fetched data into the database
-        for (const book of books) {
+        for (const item of books) {
+            const book = item.volumeInfo;
             await db.BookList.create({
                 title: book.title,
-                summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                summary: book.description || "No description available.",
                 price: Math.floor(Math.random() * (500 - 100 + 1)) + 100,
-                stock: book.stock,
-                author: book.author_name ? book.author_name.join(', ') : 'Unknown author',
-                image: `https://covers.openlibrary.org/b/id/${book.cover_i}-L.jpg`
+                stock: Math.floor(Math.random() * 100) + 1, // Random stock value
+                author: book.authors ? book.authors.join(', ') : 'Unknown author',
+                image: book.imageLinks ? book.imageLinks.thumbnail : null
             });
         }
     } catch (error) {
