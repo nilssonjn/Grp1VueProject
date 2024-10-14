@@ -5,6 +5,7 @@ const sequelize = new Sequelize({
 })
 var db = {}
 
+// get horror books
 async function setupDB() {
     try {
         db.BookList = sequelize.define('BookList', {
@@ -38,6 +39,10 @@ async function setupDB() {
                 type: DataTypes.INTEGER,
                 allowNull: true
             },
+            category: {
+                type: DataTypes.STRING,
+                allowNull: true
+            },
 
             publishyear: {
                 type: DataTypes.INTEGER,
@@ -46,50 +51,18 @@ async function setupDB() {
         });
         await sequelize.sync({force: true});
 
-        /*// Define test books -------------------------- TEST REMOVE LATER
-        const testBooks = [
-            {
-                title: "Test Book 1",
-                author: "Author 1",
-                summary: "Summary of Test Book 1",
-                stock: 10,
-                price: 100,
-                image: "https://marketplace.canva.com/EAFaQMYuZbo/1/0/1003w/canva-brown-rusty-mystery-novel-book-cover-hG1QhA7BiBU.jpg"
-            },
-            {
-                title: "Test Book 2",
-                author: "Author 2",
-                summary: "Summary of Test Book 2",
-                stock: 20,
-                price: 200,
-                image: "https://marketplace.canva.com/EAFf0E5urqk/1/0/1003w/canva-blue-and-green-surreal-fiction-book-cover-53S3IzrNxvY.jpg"
-            },
-            {
-                title: "Test Book 3",
-                author: "Author 3",
-                summary: "Summary of Test Book 3",
-                stock: 30,
-                price: 300,
-                image: "https://marketplace.canva.com/EAFPHUaBrFc/1/0/1003w/canva-black-and-white-modern-alone-story-book-cover-QHBKwQnsgzs.jpg"
-            }
-        ];
 
-        // Insert test books into the database
-        for (const book of testBooks) {
-            await db.BookList.create(book);
-        }*/
-
-        // Fetch data from Google Books API
-        const response = await fetch('https://www.googleapis.com/books/v1/volumes?q=books&maxResults=40');
-        if (!response.ok) {
-            console.error("Failed to fetch books. Status:", response.status);
+        // Fetch data from Google Books API for fantasy books
+        const fantasyResponse = await fetch('https://www.googleapis.com/books/v1/volumes?q=subject:fantasy');
+        if (!fantasyResponse.ok) {
+            console.error("Failed to fetch fantasy books. Status:", fantasyResponse.status);
             return;
         }
-        const data = await response.json();
-        const books = data.items || [];
+        const fantasyData = await fantasyResponse.json();
+        const fantasyBooks = fantasyData.items || [];
 
-        // Insert fetched data into the database
-        for (const item of books) {
+        // Insert fetched fantasy books into the database
+        for (const item of fantasyBooks) {
             const book = item.volumeInfo;
             const selfLink = item.selfLink;
 
@@ -109,13 +82,86 @@ async function setupDB() {
                 price: Math.floor(Math.random() * (500 - 100 + 1)) + 100,
                 stock: Math.floor(Math.random() * 100) + 1, // Random stock value
                 author: Array.isArray(detailedBook.authors) ? detailedBook.authors.join(', ') : 'Unknown author',
-
                 image: book.imageLinks ? book.imageLinks.thumbnail : null,
                 isbn: detailedBook.industryIdentifiers ? detailedBook.industryIdentifiers.map(id => id.identifier).join(', ') : 'Unknown ISBN',
-                publishyear: detailedBook.publishedDate ? detailedBook.publishedDate.split('-')[0] : 'Unknown publish year'
-
+                publishyear: detailedBook.publishedDate ? detailedBook.publishedDate.split('-')[0] : 'Unknown publish year',
+                category: "fantasy",
             });
         }
+        // Fetch data from Google Books API for horror books
+        const horrorResponse = await fetch('https://www.googleapis.com/books/v1/volumes?q=subject:horror');
+        if (!horrorResponse.ok) {
+            console.error("Failed to fetch horror books. Status:", horrorResponse.status);
+            return;
+        }
+        const horrorData = await horrorResponse.json();
+        const horrorBooks = horrorData.items || [];
+
+        // Insert fetched horror books into the database
+        for (const item of horrorBooks) {
+            const book = item.volumeInfo;
+            const selfLink = item.selfLink;
+
+            // Fetch detailed information using selfLink
+            const detailResponse = await fetch(selfLink);
+            if (!detailResponse.ok) {
+                console.error("Failed to fetch book details. Status:", detailResponse.status);
+                continue;
+            }
+
+            const detailData = await detailResponse.json();
+            const detailedBook = detailData.volumeInfo;
+
+            await db.BookList.create({
+                title: book.title,
+                summary: book.description || "No description available.",
+                price: Math.floor(Math.random() * (500 - 100 + 1)) + 100,
+                stock: Math.floor(Math.random() * 100) + 1, // Random stock value
+                author: Array.isArray(detailedBook.authors) ? detailedBook.authors.join(', ') : 'Unknown author',
+                image: book.imageLinks ? book.imageLinks.thumbnail : null,
+                isbn: detailedBook.industryIdentifiers ? detailedBook.industryIdentifiers.map(id => id.identifier).join(', ') : 'Unknown ISBN',
+                publishyear: detailedBook.publishedDate ? detailedBook.publishedDate.split('-')[0] : 'Unknown publish year',
+                category: "horror",
+            });
+        }
+
+        // Fetch data from Google Books API for sci-fi books
+        const sciFiResponse = await fetch('https://www.googleapis.com/books/v1/volumes?q=subject:science%20fiction');
+        if (!sciFiResponse.ok) {
+            console.error("Failed to fetch sci-fi books. Status:", sciFiResponse.status);
+            return;
+        }
+        const sciFiData = await sciFiResponse.json();
+        const sciFiBooks = sciFiData.items || [];
+
+        // Insert fetched sci-fi books into the database
+        for (const item of sciFiBooks) {
+            const book = item.volumeInfo;
+            const selfLink = item.selfLink;
+
+            // Fetch detailed information using selfLink
+            const detailResponse = await fetch(selfLink);
+            if (!detailResponse.ok) {
+                console.error("Failed to fetch book details. Status:", detailResponse.status);
+                continue;
+            }
+
+            const detailData = await detailResponse.json();
+            const detailedBook = detailData.volumeInfo;
+
+            await db.BookList.create({
+                title: book.title,
+                summary: book.description || "No description available.",
+                price: Math.floor(Math.random() * (500 - 100 + 1)) + 100,
+                stock: Math.floor(Math.random() * 100) + 1, // Random stock value
+                author: Array.isArray(detailedBook.authors) ? detailedBook.authors.join(', ') : 'Unknown author',
+                image: book.imageLinks ? book.imageLinks.thumbnail : null,
+                isbn: detailedBook.industryIdentifiers ? detailedBook.industryIdentifiers.map(id => id.identifier).join(', ') : 'Unknown ISBN',
+                publishyear: detailedBook.publishedDate ? detailedBook.publishedDate.split('-')[0] : 'Unknown publish year',
+                category: "sci-fi",
+            });
+        }
+
     } catch (error) {
         console.error(error);
     }
