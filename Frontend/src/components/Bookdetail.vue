@@ -41,7 +41,8 @@ onMounted(async () => {
     <h1>{{ book.title }}</h1>
     <img :src="book.image" alt="book cover" />
     <p>{{ book.author || 'Ingen författare tillgänglig' }}</p>
-    <p>Publiceringsår: {{ latest_revision || 'Inget publiceringsdatum tillgänglig' }}</p>
+    <p>Publiceringsår: {{ book.publishyear || 'Inget publiceringsdatum tillgänglig' }}</p>
+    <p>ISBN:{{book.isbn}}</p>
     <p>{{book.price}}</p>
     <p>{{ book.summary }}</p>
   </div>
@@ -49,6 +50,8 @@ onMounted(async () => {
     <p>Laddar bokinformation...</p>
   </div>
 </template>
+
+
 
 <style scoped>
 
