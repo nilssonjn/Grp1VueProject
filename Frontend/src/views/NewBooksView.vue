@@ -1,7 +1,10 @@
 <script setup>
 
+import NewBooks from "@/components/NewBooks.vue";
+import ShoppingCart from "@/components/ShoppingCart.vue";
 </script>
 
 <template>
-  <h1>New books</h1>
+  <ShoppingCart />
+  <new-books :limit="10"  />
 </template>

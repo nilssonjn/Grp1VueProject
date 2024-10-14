@@ -23,7 +23,7 @@ onMounted(async () => {
   try {
     // const response = await fetch("https://openlibrary.org/developers/api");
     //const response = await fetch('https://openlibrary.org/search.json?q=books&limit=50');
-    const response = await fetch('http://localhost:3001/api/books');
+    const response = await fetch('http://localhost:3001/api/newbooks');
     // Check for successful response
     if (!response.ok) {
       console.error("Failed to fetch books. Status:", response.status);

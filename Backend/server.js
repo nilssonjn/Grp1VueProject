@@ -143,6 +143,22 @@ async function startServer() {
             })
         })
 
+        // GET METHOD API URL | Get all books with year > 2000
+        app.get('/api/newbooks', (req, res) => {
+            db.BookList.findAll({
+                where: {
+                    publishyear: {
+                        [Sequelize.Op.gt]: 2000
+                    }
+                }
+            }).then(books => {
+                res.json(books);
+            }).catch(error => {
+                console.error(error);
+                res.sendStatus(500); // Internal Server Error
+            });
+        });
+
         // PUT METHOD API URL | UPDATE STOCK
         app.put('/api/books/stock/:id', (req, res) => {
             // Extract the new stock value from the request body
