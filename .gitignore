@@ -1,6 +1,6 @@
 /Backend/node_modules/
 /Backend/package-lock.json
-database.sqlite
+*database.sqlite
 # Logs
 logs
 *.log
