@@ -6,5 +6,5 @@ import ShoppingCart from "@/components/ShoppingCart.vue";
 
 <template>
   <ShoppingCart />
-  <Books :limit="10"  />
+  <Books :limit="10" :link="`http://localhost:3001/api/books`" />
 </template>

@@ -1,4 +1,4 @@
-<script setup>
+,<script setup>
 import { ref, onMounted } from 'vue';
 import router from "@/router/index.js";
 import AddToCartButton from "@/components/AddToCartButton.vue";
@@ -15,15 +15,15 @@ function BookDetail(book) {
   router.push({ name: 'books', params: { id: book.id }});
 }
 
-defineProps ({
-  limit: Number
+const { limit, link } = defineProps({
+  limit: Number,
+  link: String
 });
 
 onMounted(async () => {
   try {
-   // const response = await fetch("https://openlibrary.org/developers/api");
-    //const response = await fetch('https://openlibrary.org/search.json?q=books&limit=50');
-    const response = await fetch('http://localhost:3001/api/books');
+
+    const response = await fetch(link);
     // Check for successful response
     if (!response.ok) {
       console.error("Failed to fetch books. Status:", response.status);
