@@ -6,6 +6,7 @@ import AboutView from "@/views/AboutView.vue";
 import ScifiBooksView from "@/views/ScifiBooksView.vue";
 import HorrorBooksView from "@/views/HorrorBooksView.vue";
 import FantasyBooksView from "@/views/FantasyBooksView.vue";
+import ShoppingCartView from "@/views/ShoppingCartView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -45,7 +46,12 @@ const router = createRouter({
       path: '/fantasy',
       name: 'fantasy',
       component: FantasyBooksView
-    }
+    },
+    {
+      path: '/shoppingcart',
+      name: 'shoppingcart',
+      component: ShoppingCartView
+    },
 ]
 })
 

@@ -7,7 +7,6 @@ import ShoppingCart from "@/components/ShoppingCart.vue";
 
 <template>
   <Navbar />
-  <ShoppingCart />
   <RouterView />
 </template>
 
