@@ -67,7 +67,7 @@ const buyBooks = async () => {
         <h2>{{ book.title }}</h2>
         <button @click="removeBook(index)">Remove</button>
       </li>
-      <button @click="buyBooks">Buy</button>
+      <button @click="buyBooks">Check Out</button>
     </ul>
   </div>
 </template>
