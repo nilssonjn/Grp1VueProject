@@ -1,6 +1,6 @@
 <script setup>
 import {Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems} from '@headlessui/vue'
-import {Bars3Icon, BellIcon, XMarkIcon} from '@heroicons/vue/24/outline'
+import {Bars3Icon, BookOpenIcon, XMarkIcon, ShoppingCartIcon} from '@heroicons/vue/24/outline'
 import {RouterLink, useRoute} from "vue-router";
 import ShoppingCart from "@/components/ShoppingCart.vue";
 
@@ -38,8 +38,7 @@ const shoppingCartLink = [
         </div>
         <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
           <div class="flex flex-shrink-0 items-center">
-            <img class="h-8 w-auto" src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=500"
-                 alt="Your Company"/>
+            <BookOpenIcon class="h-8 w-auto text-gray-400" aria-hidden="true"/>
           </div>
           <div class="hidden sm:ml-6 sm:block">
             <div class="flex space-x-4">
@@ -56,12 +55,7 @@ const shoppingCartLink = [
           </div>
         </div>
         <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-          <button type="button"
-                  class="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-            <span class="absolute -inset-1.5"/>
-            <span class="sr-only">View notifications</span>
-            <BellIcon class="h-6 w-6" aria-hidden="true"/>
-          </button>
+
 
           <!-- Profile dropdown -->
           <Menu as="div" class="relative ml-3">
@@ -70,9 +64,8 @@ const shoppingCartLink = [
                   class="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                 <span class="absolute -inset-1.5"/>
                 <span class="sr-only">Open user menu</span>
-                <img class="h-8 w-8 rounded-full"
-                     src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                     alt=""/>
+                <ShoppingCartIcon class="h-6 w-6 text-gray-400" aria-hidden="true"/>
+
               </MenuButton>
             </div>
             <transition enter-active-class="transition ease-out duration-100"
@@ -91,7 +84,8 @@ const shoppingCartLink = [
                       v-for="item in shoppingCartLink"
                       :key="item.name"
                       :to="item.to"
-                      :class="[active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700']">Go to your shopping cart
+                      :class="[active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700']">Go to your
+                    shopping cart
                   </RouterLink>
                 </MenuItem>
               </MenuItems>
