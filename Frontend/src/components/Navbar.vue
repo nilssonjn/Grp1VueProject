@@ -6,8 +6,10 @@ import { RouterLink, useRoute } from "vue-router";
 const navigation = [
   { name: 'Home', to: '/', current: true },
   { name: 'New Books', to: '/newBooks', current: false },
-  { name: 'Sci-fi', to: '/scifi', current: false },
   { name: 'Toplist', to: '/toplist', current: false },
+  { name: 'Sci-fi', to: '/scifi', current: false },
+  { name: 'Fantasy', to: '/fantasy', current: false },
+  { name: 'Horror', to: '/horror', current: false },
 ]
 </script>
 

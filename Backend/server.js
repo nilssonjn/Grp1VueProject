@@ -183,11 +183,59 @@ async function startServer() {
 
         // GET METHOD API URL | RETRIEVE ITEMS
         app.get('/api/books', (req, res) => {
-            // return all books
-            db.BookList.findAll().then(tasks => {
-                res.json(tasks)
-            })
-        })
+            // return some random books
+            db.BookList.findAll({
+                order: sequelize.random(),
+                limit: 10 // Adjust the limit as needed
+            }).then(books => {
+                res.json(books);
+            }).catch(error => {
+                console.error(error);
+                res.sendStatus(500); // Internal Server Error
+            });
+        });
+
+        // GET METHOD API URL | get all books with sci-fi category
+        app.get('/api/books/scifi', (req, res) => {
+            db.BookList.findAll({
+                where: {
+                    category: 'sci-fi',
+                }
+            }).then(books => {
+                res.json(books);
+            }).catch(error => {
+                console.error(error);
+                res.sendStatus(500); // Internal Server Error
+            });
+        });
+
+        // GET METHOD API URL | get all books with fantasy category
+        app.get('/api/books/fantasy', (req, res) => {
+            db.BookList.findAll({
+                where: {
+                    category: 'fantasy',
+                }
+            }).then(books => {
+                res.json(books);
+            }).catch(error => {
+                console.error(error);
+                res.sendStatus(500); // Internal Server Error
+            });
+        });
+
+        // GET METHOD API URL | get all books with horror category
+        app.get('/api/books/horror', (req, res) => {
+            db.BookList.findAll({
+                where: {
+                    category: 'horror',
+                }
+            }).then(books => {
+                res.json(books);
+            }).catch(error => {
+                console.error(error);
+                res.sendStatus(500); // Internal Server Error
+            });
+        });
 
         // GET METHOD API URL | Get all books with year > 2000
         app.get('/api/newbooks', (req, res) => {
