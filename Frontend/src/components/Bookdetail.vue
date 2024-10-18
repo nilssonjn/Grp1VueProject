@@ -10,6 +10,13 @@ const book = ref(null);
 
 //const props = defineProps(['id']);
 
+const props = defineProps({
+  book: Object,
+  stock: {
+    type: Number,
+  },
+});
+
 onMounted(async () => {
   try {
     console.log('Fetching book with ID:', bookId);
@@ -43,6 +50,7 @@ onMounted(async () => {
     <img :src="book.image" alt="book cover" />
     <AddToCartButton
         :book="book"
+        :stock="book.stock"
         @add-to-cart="addToCart"
     />
     <p>{{ book.author || 'Ingen författare tillgänglig' }}</p>

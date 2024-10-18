@@ -60,6 +60,7 @@ onMounted(async () => {
         <p>{{ book.author }}</p>
         <AddToCartButton
             :book="book"
+            :stock="book.stock"
             @add-to-cart="addToCart"
         />
       </li>

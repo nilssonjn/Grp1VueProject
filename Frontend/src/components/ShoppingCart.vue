@@ -29,7 +29,7 @@ const getBookFromID = async (book) => {
     const bookData = await response.json();
     return bookData;
   } catch (error) {
-    console.error('Failed to get stock value')
+    console.error('Failed to get stock value', error)
   }
 };
 
@@ -47,6 +47,8 @@ async function updateStockInDB(book, newStock) {
   });
   return updateResponse;
 }
+
+
 
 const buyBooks = async () => {
   try {
