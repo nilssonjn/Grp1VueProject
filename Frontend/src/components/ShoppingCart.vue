@@ -48,16 +48,45 @@ async function updateStockInDB(book, newStock) {
   return updateResponse;
 }
 
+const checkAgainstStockInDB = async () => {
+    const bookCounts = {};
+
+
+    // add current book to a new list
+    for (const book of cartItems.value) {
+      if (bookCounts[book.id]) {
+        bookCounts[book.id]++;
+      } else {
+        bookCounts[book.id] = 1;
+      }
+    }
+
+  // Check stock for each book
+  for (const bookId in bookCounts) {
+    const bookData = await getBookFromID({ id: bookId });
+    const countInCart = bookCounts[bookId];
+
+    // check if stock in db minus how many books you wanna buy is < 0
+    if (bookData.stock - countInCart < 0) {
+      alert(`Not enough stock for book: ${bookData.title}`);
+      return false;
+    }
+  }
+  return true;
+}
 
 
 const buyBooks = async () => {
+  const isStockAvailable = await checkAgainstStockInDB();
+  if(isStockAvailable){
   try {
 
     for (const book of cartItems.value) {
 
       const bookData = await getBookFromID(book);
 
-      // Update the stock value
+      // Update the stock
+
       const newStock = bookData.stock - 1;
 
       const updateResponse = await updateStockInDB(book, newStock);
@@ -74,6 +103,7 @@ const buyBooks = async () => {
 
   } catch (error) {
     console.error('Failed to update stock:', error);
+  }
   }
 };
 
