@@ -1,5 +1,5 @@
 <script setup>
-import {ref, onMounted} from 'vue';
+import {ref, onMounted, computed} from 'vue';
 
 const cartItems = ref([]);
 
@@ -13,10 +13,19 @@ onMounted(() => {
   window.addEventListener('basket-updated', updateCart);
 });
 
-const removeBook = (index) => {
-  cartItems.value.splice(index, 1);
-  localStorage.setItem('books', JSON.stringify(cartItems.value));
-  window.dispatchEvent(new Event('basket-updated')); // Ensure the event is dispatched when removing a book
+// const removeBook = (index) => {
+//   cartItems.value.splice(index, 1);
+//   localStorage.setItem('books', JSON.stringify(cartItems.value));
+//   window.dispatchEvent(new Event('basket-updated')); // Ensure the event is dispatched when removing a book
+// };
+
+const removeBook = (bookId) => {
+  const index = cartItems.value.findIndex(book => book.id === bookId);
+  if (index !== -1) {
+    cartItems.value.splice(index, 1);
+    localStorage.setItem('books', JSON.stringify(cartItems.value));
+    window.dispatchEvent(new Event('basket-updated')); // Ensure the event is dispatched when removing a book
+  }
 };
 
 const getBookFromID = async (book) => {
@@ -51,7 +60,6 @@ async function updateStockInDB(book, newStock) {
 const checkAgainstStockInDB = async () => {
     const bookCounts = {};
 
-
     // add current book to a new list
     for (const book of cartItems.value) {
       if (bookCounts[book.id]) {
@@ -74,6 +82,8 @@ const checkAgainstStockInDB = async () => {
   }
   return true;
 }
+
+
 
 
 const buyBooks = async () => {
@@ -107,15 +117,27 @@ const buyBooks = async () => {
   }
 };
 
+const bookCounts = computed(() => {
+  const counts = {};
+  for (const book of cartItems.value) {
+    if (counts[book.id]) {
+      counts[book.id].count++;
+    } else {
+      counts[book.id] = { ...book, count: 1 };
+    }
+  }
+  return Object.values(counts);
+});
+
 </script>
 
 <template>
   <div>
     <h1>Shopping Cart</h1>
     <ul>
-      <li v-for="(book, index) in cartItems" :key="index">
-        <h2>{{ book.title }}</h2>
-        <button @click="removeBook(index)">Remove</button>
+      <li v-for="book in bookCounts" :key="book.id">
+        <h2>{{ book.title }} ({{ book.count }})</h2>
+        <button @click="removeBook(book.id)">Remove</button>
       </li>
     </ul>
     <button @click="buyBooks">Check Out</button>
