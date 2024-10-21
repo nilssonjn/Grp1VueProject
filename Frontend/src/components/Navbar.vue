@@ -7,7 +7,7 @@ import ShoppingCart from "@/components/ShoppingCart.vue";
 const route = useRoute();
 
 const navigation = [
-  {name: 'Home', to: '/', current: true},
+  {name: 'Home', to: 'home', current: true},
   {name: 'New Books', to: 'newBooks', current: false},
   {name: 'Sci-fi', to: 'scifi', current: false},
   {name: 'Fantasy', to: 'fantasy', current: false},
