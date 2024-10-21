@@ -194,6 +194,19 @@ async function startServer() {
                 res.sendStatus(500); // Internal Server Error
             });
         });
+        // GET METHOD API URL | RETRIEVE ITEMS
+        app.get('/api/books/home', (req, res) => {
+            // return some random books
+            db.BookList.findAll({
+                order: sequelize.random(),
+                limit: 10 // Adjust the limit as needed
+            }).then(books => {
+                res.json(books);
+            }).catch(error => {
+                console.error(error);
+                res.sendStatus(500); // Internal Server Error
+            });
+        });
 
         // GET METHOD API URL | get all books with sci-fi category
         app.get('/api/books/scifi', (req, res) => {
