@@ -27,7 +27,7 @@ const router = createRouter({
     {
       path: '/category/:name',
       name: 'category',
-      component: BooksView,
+      component: () => import('../views/BooksView.vue'),
       props: true
     },
     {

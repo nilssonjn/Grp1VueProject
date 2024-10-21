@@ -238,7 +238,7 @@ async function startServer() {
         });
 
         // GET METHOD API URL | Get all books with year > 2000
-        app.get('/api/newbooks', (req, res) => {
+        app.get('/api/books/newBooks', (req, res) => {
             db.BookList.findAll({
                 where: {
                     publishyear: {

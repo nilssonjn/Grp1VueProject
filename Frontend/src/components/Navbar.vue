@@ -8,10 +8,10 @@ const route = useRoute();
 
 const navigation = [
   {name: 'Home', to: '/', current: true},
-  {name: 'New Books', to: '/newBooks', current: false},
-  {name: 'Sci-fi', to: '/scifi', current: false},
-  {name: 'Fantasy', to: '/fantasy', current: false},
-  {name: 'Horror', to: '/horror', current: false},
+  {name: 'New Books', to: 'newBooks', current: false},
+  {name: 'Sci-fi', to: 'scifi', current: false},
+  {name: 'Fantasy', to: 'fantasy', current: false},
+  {name: 'Horror', to: 'horror', current: false},
 ]
 
 const shoppingCartLink = [
@@ -47,7 +47,7 @@ const shoppingCartLink = [
               <RouterLink
                   v-for="item in navigation"
                   :key="item.name"
-                  :to="{name:'category', params: {name: item.name}, props: true}"
+                  :to="{name:'category', params: {name: item.to}, props: true}"
                   :class="[
                     route.path === item.to
                     ? 'bg-gray-900'
@@ -111,7 +111,7 @@ const shoppingCartLink = [
         <RouterLink
             v-for="item in navigation"
             :key="item.name"
-            :to="item.to"
+            :to="{name:'category', params: {name: item.name}, props: true}"
             :class="[
               route.path === item.to
               ? 'bg-gray-900'
