@@ -15,15 +15,14 @@ function BookDetail(book) {
   router.push({ name: 'books', params: { id: book.id }});
 }
 
-const { limit, link } = defineProps({
+const { limit } = defineProps({
   limit: Number,
-  link: String
 });
 
 onMounted(async () => {
   try {
 
-    const response = await fetch(link);
+    const response = await fetch("http://localhost:3001/api/books/");
     // Check for successful response
     if (!response.ok) {
       console.error("Failed to fetch books. Status:", response.status);

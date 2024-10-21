@@ -1,5 +1,5 @@
 <script setup>
-import {defineEmits, ref, watch} from 'vue';
+import {defineEmits, ref, watch, onMounted} from 'vue';
 
 const emit = defineEmits(['add-to-cart', 'basket-updated']);
 
@@ -12,6 +12,12 @@ const props = defineProps({
 
 const currentStock = ref(props.stock);
 
+onMounted(() => {
+  const stockData = JSON.parse(localStorage.getItem('stockData')) || {};
+  if (stockData[props.book.id] !== undefined) {
+    currentStock.value = stockData[props.book.id];
+  }
+});
 /*const booksInStorage = JSON.parse(localStorage.getItem('books')) || [];
 const bookInCart = booksInStorage.find((book) => book.id === props.book.id);
 if(booksInStorage){
@@ -20,6 +26,12 @@ if(booksInStorage){
 
 watch(currentStock, (newStock) => {
   props.book.stock = newStock;
+});
+
+watch(currentStock, (newStock) => {
+  const stockData = JSON.parse(localStorage.getItem('stockData')) || {};
+  stockData[props.book.id] = newStock;
+  localStorage.setItem('stockData', JSON.stringify(stockData));
 });
 
 const addBook = () => {
