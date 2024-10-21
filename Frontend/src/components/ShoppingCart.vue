@@ -79,16 +79,17 @@ const buyBooks = async () => {
 
 </script>
 
+
 <template>
   <div>
     <h1>Shopping Cart</h1>
     <ul>
       <li v-for="(book, index) in cartItems" :key="index">
         <h2>{{ book.title }}</h2>
-        <button @click="removeBook(index)">Remove</button>
+        <button class="remove-button" @click="removeBook(index)">Remove</button>
       </li>
+      <button class="checkout-button" @click="buyBooks">Check Out</button>
     </ul>
-    <button @click="buyBooks">Check Out</button>
   </div>
 </template>
 <style scoped>
