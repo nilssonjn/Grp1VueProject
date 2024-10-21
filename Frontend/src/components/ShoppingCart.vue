@@ -95,11 +95,7 @@ const buyBooks = async () => {
     for (const book of cartItems.value) {
 
       const bookData = await getBookFromID(book);
-
-      // Update the stock
-
       const newStock = bookData.stock - 1;
-
       const updateResponse = await updateStockInDB(book, newStock);
 
       if (!updateResponse.ok) {
@@ -111,6 +107,7 @@ const buyBooks = async () => {
     cartItems.value = [];
     localStorage.setItem('books', JSON.stringify(cartItems.value));
     window.dispatchEvent(new Event('basket-updated')); // Ensure the event is dispatched when buying books
+    window.location.reload(); // Reload the page
 
   } catch (error) {
     console.error('Failed to update stock:', error);
@@ -130,6 +127,10 @@ const bookCounts = computed(() => {
   return Object.values(counts);
 });
 
+const totalPrice = computed(() => {
+  return cartItems.value.reduce((total, book) => total + book.price, 0);
+});
+
 </script>
 
 <template>
@@ -144,6 +145,7 @@ const bookCounts = computed(() => {
         </AddToCartButton>
       </li>
     </ul>
+    <p>Total Price: {{ totalPrice }}</p>
     <button @click="buyBooks">Check Out</button>
   </div>
 </template>

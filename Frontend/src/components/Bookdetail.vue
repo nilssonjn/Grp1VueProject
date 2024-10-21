@@ -57,7 +57,7 @@ onMounted(async () => {
     <p>Lagerstatus: {{book.stock}}</p>
     <p>Publiceringsår: {{ book.publishyear || 'Inget publiceringsdatum tillgänglig' }}</p>
     <p>ISBN:{{book.isbn}}</p>
-    <p>{{book.price}}</p>
+    <p>Pris: {{book.price}}</p>
     <p>{{ book.summary }}</p>
   </div>
   <div v-else>
