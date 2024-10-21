@@ -1,13 +1,14 @@
 <script setup>
-import { RouterView } from 'vue-router'
+import { RouterView, useRoute } from 'vue-router'
 import Navbar from "@/components/Navbar.vue";
 import ShoppingCart from "@/components/ShoppingCart.vue";
 
+const route = useRoute();
 </script>
 
 <template>
   <Navbar />
-  <RouterView />
+  <RouterView :key="route.fullPath"/>
 </template>
 
 <style scoped>

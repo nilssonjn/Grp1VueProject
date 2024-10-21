@@ -1,6 +1,7 @@
 <script setup>
 import { useRoute } from "vue-router";
 import { onMounted, ref, defineProps } from "vue";
+import AddToCartButton from "@/components/AddToCartButton.vue";
 
 const route = useRoute();
 const bookId = route.params.id; // Använd detta ID för att hämta bokinformation
@@ -8,6 +9,13 @@ const bookId = route.params.id; // Använd detta ID för att hämta bokinformati
 const book = ref(null);
 
 //const props = defineProps(['id']);
+
+const props = defineProps({
+  book: Object,
+  stock: {
+    type: Number,
+  },
+});
 
 onMounted(async () => {
   try {
@@ -40,7 +48,13 @@ onMounted(async () => {
   <div v-if="book">
     <h1>{{ book.title }}</h1>
     <img :src="book.image" alt="book cover" />
+    <AddToCartButton
+        :book="book"
+        :stock="book.stock"
+        @add-to-cart="addToCart"
+    />
     <p>{{ book.author || 'Ingen författare tillgänglig' }}</p>
+    <p>Lagerstatus: {{book.stock}}</p>
     <p>Publiceringsår: {{ book.publishyear || 'Inget publiceringsdatum tillgänglig' }}</p>
     <p>ISBN:{{book.isbn}}</p>
     <p>{{book.price}}</p>

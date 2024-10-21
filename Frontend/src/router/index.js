@@ -1,12 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import Bookdetail from '../components/Bookdetail.vue';
-import NewBooksView from "@/views/NewBooksView.vue";
-import AboutView from "@/views/AboutView.vue";
-import ScifiBooksView from "@/views/ScifiBooksView.vue";
-import HorrorBooksView from "@/views/HorrorBooksView.vue";
-import FantasyBooksView from "@/views/FantasyBooksView.vue";
+import BooksView from "@/views/BooksView.vue";
 import ShoppingCartView from "@/views/ShoppingCartView.vue";
+import AboutView from "@/views/AboutView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -28,24 +25,10 @@ const router = createRouter({
       //props: true
     },
     {
-      path: '/newBooks',
-      name: 'newBooks',
-      component: NewBooksView,
-    },
-    {
-      path: '/scifi',
-      name: 'scifi',
-      component: ScifiBooksView
-    },
-    {
-      path: '/horror',
-      name: 'horror',
-      component: HorrorBooksView
-    },
-    {
-      path: '/fantasy',
-      name: 'fantasy',
-      component: FantasyBooksView
+      path: '/category/:name',
+      name: 'category',
+      component: () => import('../views/BooksView.vue'),
+      props: true
     },
     {
       path: '/shoppingcart',

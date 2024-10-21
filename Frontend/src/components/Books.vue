@@ -15,14 +15,16 @@ function BookDetail(book) {
   router.push({ name: 'books', params: { id: book.id }});
 }
 
-const { limit, link } = defineProps({
+const props  = defineProps({
   limit: Number,
-  link: String
+  name: String,
 });
+
+const link = "http://localhost:3001/api/books/" + props.name;
 
 onMounted(async () => {
   try {
-
+    console.log('Fetching books for category:', props.name);
     const response = await fetch(link);
     // Check for successful response
     if (!response.ok) {
@@ -54,12 +56,13 @@ onMounted(async () => {
   <div class="bookList">
     <ul>
 
-      <li v-for="book in books.slice(0, limit)" :key="book.id">
+      <li v-for="book in books.slice(0, props.limit)" :key="book.id">
         <h3>{{ book.title }}</h3>
         <img :src="book.image" alt="book cover" @click="BookDetail(book)"/>
         <p>{{ book.author }}</p>
         <AddToCartButton
             :book="book"
+            :stock="book.stock"
             @add-to-cart="addToCart"
         />
       </li>
