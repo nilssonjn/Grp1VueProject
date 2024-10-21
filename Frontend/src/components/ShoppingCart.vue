@@ -133,20 +133,26 @@ const totalPrice = computed(() => {
 
 </script>
 
+
 <template>
   <div>
     <h1>Shopping Cart</h1>
     <ul>
+
       <li v-for="book in bookCounts" :key="book.id">
         <h2>{{ book.title }} ({{ book.count }})</h2>
         <button @click="removeBook(book.id)"> - </button>
         <AddToCartButton :book="book" :stock="book.stock" @add-to-cart="updateCart">
           +
         </AddToCartButton>
+
       </li>
+      <button class="checkout-button" @click="buyBooks">Check Out</button>
     </ul>
+
     <p>Total Price: {{ totalPrice }}</p>
     <button @click="buyBooks">Check Out</button>
+
   </div>
 </template>
 <style scoped>
