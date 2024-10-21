@@ -1,5 +1,6 @@
 <script setup>
 import {ref, onMounted, computed} from 'vue';
+import AddToCartButton from "@/components/AddToCartButton.vue";
 
 const cartItems = ref([]);
 
@@ -137,7 +138,10 @@ const bookCounts = computed(() => {
     <ul>
       <li v-for="book in bookCounts" :key="book.id">
         <h2>{{ book.title }} ({{ book.count }})</h2>
-        <button @click="removeBook(book.id)">Remove</button>
+        <button @click="removeBook(book.id)"> - </button>
+        <AddToCartButton :book="book" :stock="book.stock" @add-to-cart="updateCart">
+          +
+        </AddToCartButton>
       </li>
     </ul>
     <button @click="buyBooks">Check Out</button>

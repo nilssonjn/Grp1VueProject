@@ -18,7 +18,9 @@ const addBook = () => {
 </script>
 
 <template>
-  <button @click="addBook">Add to Cart</button>
+  <button @click="addBook">
+    <slot>Add to Cart</slot>
+  </button>
 </template>
 
 <style scoped>
