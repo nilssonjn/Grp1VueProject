@@ -1,4 +1,4 @@
-import { test, expect, beforeEach, describe, vi } from "vitest";
+import { test, expect, beforeEach, afterEach, describe, vi } from "vitest";
 import ShoppingCart from "../ShoppingCart.vue";
 import { mount } from '@vue/test-utils';
 
@@ -22,6 +22,8 @@ describe('ShoppingCart', () => {
         };
 
 
+
+
         // Set up mock data
         localStorageMock.getItem.mockImplementation((key) => {
             if (key === 'books') {
@@ -31,6 +33,12 @@ describe('ShoppingCart', () => {
         });
 
     })
+
+    afterEach(() => {
+        // Återställ mockar
+        vi.clearAllMocks();
+        delete window.location; // Ta bort mock
+    });
 
 
     test('should remove a book from the cart', async () => {
@@ -70,25 +78,32 @@ describe('ShoppingCart', () => {
     });
 
     test('should update stock when books are purchased', async () => {
-        const wrapper = mount(ShoppingCart);
-        await wrapper.vm.$nextTick();
+        if(typeof window !== 'undefined' && typeof window.location !== 'undefined') {
+            const originalReload = window.location.reload; // Spara original reload-funktionen
+            window.location.reload = vi.fn(); // Mocka reload
 
-        // Mocka getBookFromID för att returnera ett objekt med lager
-        wrapper.vm.getBookFromID = vi.fn().mockImplementation(() =>
-            Promise.resolve({id: 1, stock: 5, title: 'Test Book'})
-        );
+            const wrapper = mount(ShoppingCart);
+            await wrapper.vm.$nextTick();
 
-        // Mocka updateStockInDB för att alltid returnera ok
-        wrapper.vm.updateStockInDB = vi.fn().mockImplementation(() =>
-            Promise.resolve({ok: true})
-        );
+            // Mocka getBookFromID för att returnera ett objekt med lager
+            wrapper.vm.getBookFromID = vi.fn().mockImplementation(() =>
+                Promise.resolve({id: 1, stock: 5, title: 'Test Book'})
+            );
 
-        await wrapper.find('.checkout-button').trigger('click');
-        await new Promise(resolve => setTimeout(resolve, 0));
+            // Mocka updateStockInDB för att alltid returnera ok
+            wrapper.vm.updateStockInDB = vi.fn().mockImplementation(() =>
+                Promise.resolve({ok: true})
+            );
 
-        expect(wrapper.vm.getBookFromID).toHaveBeenCalledTimes(1);
-        expect(wrapper.vm.updateStockInDB).toHaveBeenCalledTimes(1);
-        expect(global.alert).toHaveBeenCalledWith('Books bought!');
+            await wrapper.find('.checkout-button').trigger('click');
+            await new Promise(resolve => setTimeout(resolve, 0));
+
+            expect(wrapper.vm.getBookFromID).toHaveBeenCalledTimes(1);
+            expect(wrapper.vm.updateStockInDB).toHaveBeenCalledTimes(1);
+            expect(global.alert).toHaveBeenCalledWith('Books bought!');
+
+            window.location.reload = originalReload;
+        }
     });
 
 });

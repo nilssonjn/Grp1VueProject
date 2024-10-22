@@ -151,7 +151,7 @@ const totalPrice = computed(() => {
     </ul>
 
     <p>Total Price: {{ totalPrice }}</p>
-    <button @click="buyBooks">Check Out</button>
+    <button class="checkout-button" @click="buyBooks">Check Out</button>
 
   </div>
 </template>
