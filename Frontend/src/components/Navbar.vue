@@ -18,10 +18,6 @@ const shoppingCartLink = [
   {name: 'Shopping Cart', to: '/shoppingcart', current: false}
 ]
 
-// function goToCart() {
-//   router.push({ name: 'shoppingcart' }); // Adjust to the route that matches your cart page
-// }
-
 </script>
 
 <template>
@@ -73,7 +69,10 @@ const shoppingCartLink = [
           <Menu as="div" class="relative ml-3">
             <div>
               <MenuButton
-                  class="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                  class="relative flex rounded-full bg-gray-800 text-sm
+                  focus:outline-none focus:ring-2 focus:ring-white
+                  focus:ring-offset-2 focus:ring-offset-gray-800
+                  hover:bg-gray-700 hover:text-white p-2">
                 <span class="absolute -inset-1.5"/>
                 <span class="sr-only">Open user menu</span>
                 <ShoppingCartIcon class="h-6 w-6 text-gray-400" aria-hidden="true"/>

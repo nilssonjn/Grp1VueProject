@@ -6,13 +6,10 @@ export default {
       fontFamily: {
         sans: ["Poppins", "sans-serif"],
       },
-      gridTemplateColumns: {
-        "70/30": "70/28%",
-      },
     },
   },
   plugins: [
-    require('daisyui'),
+    require('@tailwindcss/aspect-ratio'),
   ],
 }
 

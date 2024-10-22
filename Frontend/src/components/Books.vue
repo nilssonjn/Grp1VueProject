@@ -1,5 +1,6 @@
-,<script setup>
-import { ref, onMounted } from 'vue';
+,
+<script setup>
+import {ref, onMounted} from 'vue';
 import router from "@/router/index.js";
 import AddToCartButton from "@/components/AddToCartButton.vue";
 
@@ -12,10 +13,10 @@ const updatedBooks = ref([]);
 
 function BookDetail(book) {
   //router.push({ name: 'bookdetail', params: { id: book.key.split('/').pop() } });
-  router.push({ name: 'books', params: { id: book.id }});
+  router.push({name: 'books', params: {id: book.id}});
 }
 
-const props  = defineProps({
+const props = defineProps({
   limit: Number,
   name: String,
 });
@@ -51,23 +52,37 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="card bg-base-100 w-96 shadow-xl">
-    <figure>
-      <img
-          :src="book.image" alt="book cover" @click="BookDetail(book)"/>
-    </figure>
-    <div class="card-body">
-      <h2 class="card-title">Shoes!</h2>
-      <p>If a dog chews shoes whose shoes does he choose?</p>
-      <div class="card-actions justify-end">
-        <button class="btn btn-primary">Buy Now</button>
+  <div class="bg-white">
+    <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-40">
+      <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+        <div v-for="book in books.slice(0, props.limit)" :key="book.id" class="group relative">
+          <div
+              class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200
+               lg:aspect-none group-hover:opacity-75 lg:h-80">
+            <img :src="book.image" alt="book cover" @click="BookDetail(book)"
+                 class="h-full w-full object-cover object-center lg:h-full lg:w-full" />
+          </div>
+          <div class="mt-4 flex justify-between">
+            <div>
+              <h3 class="text-sm text-gray-700">
+                  <span aria-hidden="true" class="absolute inset-0"/>
+                  {{ book.title }}
+              </h3>
+              <p class="mt-1 text-sm text-gray-500">{{ book.author }}</p>
+            </div>
+            <p class="text-sm font-medium text-gray-900">{{ book.price }} kr</p>
+          </div>
+          <AddToCartButton
+              :book="book"
+              :stock="book.stock"
+              @add-to-cart="addToCart"
+          />
+        </div>
       </div>
     </div>
   </div>
 </template>
 
-<!--<template>-->
-<!--  <h1>Books</h1>-->
 <!--  <div class="bookList">-->
 <!--    <ul>-->
 
@@ -84,4 +99,3 @@ onMounted(async () => {
 <!--    </ul>-->
 <!--  </div>-->
 
-<!--</template>-->
