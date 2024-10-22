@@ -50,36 +50,38 @@ onMounted(async () => {
 
 </script>
 
-
 <template>
-  <h1>Books</h1>
-  <div class="bookList">
-    <ul>
-
-      <li v-for="book in books.slice(0, props.limit)" :key="book.id">
-        <h3>{{ book.title }}</h3>
-        <img :src="book.image" alt="book cover" @click="BookDetail(book)"/>
-        <p>{{ book.author }}</p>
-        <AddToCartButton
-            :book="book"
-            :stock="book.stock"
-            @add-to-cart="addToCart"
-        />
-      </li>
-    </ul>
+  <div class="card bg-base-100 w-96 shadow-xl">
+    <figure>
+      <img
+          :src="book.image" alt="book cover" @click="BookDetail(book)"/>
+    </figure>
+    <div class="card-body">
+      <h2 class="card-title">Shoes!</h2>
+      <p>If a dog chews shoes whose shoes does he choose?</p>
+      <div class="card-actions justify-end">
+        <button class="btn btn-primary">Buy Now</button>
+      </div>
+    </div>
   </div>
-
 </template>
 
-<style scoped>
+<!--<template>-->
+<!--  <h1>Books</h1>-->
+<!--  <div class="bookList">-->
+<!--    <ul>-->
 
-.bookList {
-  display: grid;
-  flex-direction: row;
-  grid-template-columns: repeat(5, 1fr);
-  border: #181818 solid 1px;
-}
+<!--      <li v-for="book in books.slice(0, props.limit)" :key="book.id">-->
+<!--        <h3>{{ book.title }}</h3>-->
+<!--        <img :src="book.image" alt="book cover" @click="BookDetail(book)"/>-->
+<!--        <p>{{ book.author }}</p>-->
+<!--        <AddToCartButton-->
+<!--            :book="book"-->
+<!--            :stock="book.stock"-->
+<!--            @add-to-cart="addToCart"-->
+<!--        />-->
+<!--      </li>-->
+<!--    </ul>-->
+<!--  </div>-->
 
-
-
-</style>
+<!--</template>-->
