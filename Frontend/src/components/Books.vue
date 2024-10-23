@@ -51,38 +51,9 @@ onMounted(async () => {
 
 </script>
 
-<template>
-  <div class="bg-white">
-    <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-40">
-      <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-        <div v-for="book in books.slice(0, props.limit)" :key="book.id" class="group relative">
-          <div
-              class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200
-               lg:aspect-none group-hover:opacity-75 lg:h-80">
-            <img :src="book.image" alt="book cover" @click="BookDetail(book)"
-                 class="h-full w-full object-cover object-center lg:h-full lg:w-full" />
-          </div>
-          <div class="mt-4 flex justify-between">
-            <div>
-              <h3 class="text-sm text-gray-700">
-                  <span aria-hidden="true" class="absolute inset-0"/>
-                  {{ book.title }}
-              </h3>
-              <p class="mt-1 text-sm text-gray-500">{{ book.author }}</p>
-            </div>
-            <p class="text-sm font-medium text-gray-900">{{ book.price }} kr</p>
-          </div>
-          <AddToCartButton
-              :book="book"
-              :stock="book.stock"
-              @add-to-cart="addToCart"
-          />
-        </div>
-      </div>
-    </div>
-  </div>
-</template>
+<!--original template-->
 
+<!--<template>-->
 <!--  <div class="bookList">-->
 <!--    <ul>-->
 
@@ -98,4 +69,32 @@ onMounted(async () => {
 <!--      </li>-->
 <!--    </ul>-->
 <!--  </div>-->
+<!--</template>-->
+
+<template>
+  <section id="Books"
+           class="w-fit mx-auto grid grid-cols-1 lg:grid-cols-3
+           md:grid-cols-2 justify-items-center justify-center gap-y-10 gap-x-10 mt-10 mb-5">
+    <div v-for="book in books.slice(0, props.limit)" :key="book.id"
+         class="w-72 bg-white shadow-md rounded-xl overflow-hidden duration-500 hover:scale-105 hover:shadow-xl">
+      <div class="w-full h-72">
+        <img :src="book.image" alt="book cover" @click="BookDetail(book)"
+             class="h-full w-full object-cover"/>
+      </div>
+      <div class="px-4 py-3">
+        <span class="text-gray-400 mr-3 uppercase text-xs">{{ book.author }}</span>
+        <p class="text-lg font-bold text-black truncate block capitalize">{{ book.title }}</p>
+        <div class="flex items-center">
+          <p class="text-lg font-semibold text-black cursor-auto my-3">{{ book.price }} kr</p>
+          <AddToCartButton
+              :book="book"
+              @add-to-cart="addToCart"/>
+          <div class="ml-auto">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</template>
+
 
