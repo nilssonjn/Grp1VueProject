@@ -1,6 +1,6 @@
 <script setup>
-import { useRoute } from "vue-router";
-import { onMounted, ref, defineProps } from "vue";
+import {useRoute} from "vue-router";
+import {onMounted, ref, defineProps} from "vue";
 import AddToCartButton from "@/components/AddToCartButton.vue";
 
 const route = useRoute();
@@ -44,29 +44,53 @@ onMounted(async () => {
 });
 </script>
 
+<!--<template>-->
+<!--  <div v-if="book">-->
+<!--    <img :src="book.image" alt="book cover" />-->
+<!--    <AddToCartButton-->
+<!--        :book="book"-->
+<!--        :stock="book.stock"-->
+<!--        @add-to-cart="addToCart"-->
+<!--    />-->
+<!--    <h1>{{ book.title }}</h1>-->
+<!--    <p>{{ book.author || 'Ingen författare tillgänglig' }}</p>-->
+<!--    <p>Lagerstatus: {{book.stock}}</p>-->
+<!--    <p>Publiceringsår: {{ book.publishyear || 'Inget publiceringsdatum tillgänglig' }}</p>-->
+<!--    <p>ISBN:{{book.isbn}}</p>-->
+<!--    <p>Pris: {{book.price}}</p>-->
+<!--    <p>{{ book.summary }}</p>-->
+<!--  </div>-->
+<!--  <div v-else>-->
+<!--    <p>Laddar bokinformation...</p>-->
+<!--  </div>-->
+<!--</template>-->
+
 <template>
-  <div v-if="book">
-    <h1>{{ book.title }}</h1>
-    <img :src="book.image" alt="book cover" />
-    <AddToCartButton
-        :book="book"
-        :stock="book.stock"
-        @add-to-cart="addToCart"
-    />
-    <p>{{ book.author || 'Ingen författare tillgänglig' }}</p>
-    <p>Lagerstatus: {{book.stock}}</p>
-    <p>Publiceringsår: {{ book.publishyear || 'Inget publiceringsdatum tillgänglig' }}</p>
-    <p>ISBN:{{book.isbn}}</p>
-    <p>Pris: {{book.price}}</p>
-    <p>{{ book.summary }}</p>
-  </div>
-  <div v-else>
-    <p>Laddar bokinformation...</p>
-  </div>
+  <section id="Bookdetail"
+           class="w-fit mx-auto grid grid-cols-1
+           justify-items-center justify-center gap-y-20 gap-x-14 mt-10 mb-5">
+    <div class="w-90">
+      <div v-if="book">
+        <img :src="book.image" alt="book cover" class="h-82 w-72 object-cover px-4 py-3"/>
+        <div class="px-4 py-3 w-90">
+          <AddToCartButton
+              :book="book"
+              :stock="book.stock"
+              @add-to-cart="addToCart"
+          />
+          <p class="text-lg font-bold text-black truncate block capitalize">Title: {{ book.title }}</p>
+          <p>Author: {{ book.author || 'Ingen författare tillgänglig' }}</p>
+          <p>Available: {{book.stock}}</p>
+          <p>Published: {{ book.publishyear || 'Inget publiceringsdatum tillgänglig' }}</p>
+          <p>ISBN: {{book.isbn}}</p>
+          <p>Price: {{book.price}} kr</p>
+          <br>
+          <p>Summary: {{ book.summary }}</p>
+        </div>
+      </div>
+      <div v-else>
+        <p>Laddar bokinformation...</p>
+      </div>
+    </div>
+  </section>
 </template>
-
-
-
-<style scoped>
-
-</style>

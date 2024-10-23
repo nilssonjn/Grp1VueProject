@@ -70,7 +70,6 @@ onMounted(async () => {
 <!--    </ul>-->
 <!--  </div>-->
 <!--</template>-->
-
 <template>
   <section id="Books"
            class="w-fit mx-auto grid grid-cols-1 lg:grid-cols-3
