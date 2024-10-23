@@ -141,8 +141,8 @@ const totalPrice = computed(() => {
 
       <li v-for="book in bookCounts" :key="book.id">
         <h2>{{ book.title }} ({{ book.count }})</h2>
-        <button @click="removeBook(book.id)"> - </button>
-        <AddToCartButton :book="book" :stock="book.stock" @add-to-cart="updateCart">
+        <button @click.stop="removeBook(book.id)"> - </button>
+        <AddToCartButton @click.stop :book="book" :stock="book.stock" @add-to-cart="updateCart">
           +
         </AddToCartButton>
 
