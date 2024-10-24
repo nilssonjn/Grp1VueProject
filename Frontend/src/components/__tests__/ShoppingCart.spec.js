@@ -11,6 +11,7 @@ describe('ShoppingCart', () => {
         // Mock fetch and ale
         global.fetch = vi.fn();
         global.alert = vi.fn();
+    })
 
 
     // Mock localStorage

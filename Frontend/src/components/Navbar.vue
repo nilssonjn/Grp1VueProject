@@ -111,7 +111,7 @@ const shoppingCartLink = [
         <RouterLink
             v-for="item in navigation"
             :key="item.name"
-            :to="{name:'category', params: {name: item.name}, props: true}"
+            :to="{name:'category', params: {name: item.to}, props: true}"
             :class="[
               route.path === item.to
               ? 'bg-gray-900'
