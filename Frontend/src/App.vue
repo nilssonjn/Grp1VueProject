@@ -2,6 +2,7 @@
 import { RouterView, useRoute } from 'vue-router'
 import Navbar from "@/components/Navbar.vue";
 import ShoppingCart from "@/components/ShoppingCart.vue";
+import Footer from "@/components/Footer.vue";
 
 const route = useRoute();
 </script>
@@ -9,6 +10,7 @@ const route = useRoute();
 <template>
   <Navbar />
   <RouterView :key="route.fullPath"/>
+  <Footer />
 </template>
 
 <style scoped>
