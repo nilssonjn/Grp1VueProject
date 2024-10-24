@@ -59,20 +59,20 @@ async function updateStockInDB(book, newStock) {
 }
 
 const checkAgainstStockInDB = async () => {
-    const bookCounts = {};
+  const bookCounts = {};
 
-    // add current book to a new list
-    for (const book of cartItems.value) {
-      if (bookCounts[book.id]) {
-        bookCounts[book.id]++;
-      } else {
-        bookCounts[book.id] = 1;
-      }
+  // add current book to a new list
+  for (const book of cartItems.value) {
+    if (bookCounts[book.id]) {
+      bookCounts[book.id]++;
+    } else {
+      bookCounts[book.id] = 1;
     }
+  }
 
   // Check stock for each book
   for (const bookId in bookCounts) {
-    const bookData = await getBookFromID({ id: bookId });
+    const bookData = await getBookFromID({id: bookId});
     const countInCart = bookCounts[bookId];
 
     // check if stock in db minus how many books you wanna buy is < 0
@@ -85,33 +85,31 @@ const checkAgainstStockInDB = async () => {
 }
 
 
-
-
 const buyBooks = async () => {
   const isStockAvailable = await checkAgainstStockInDB();
-  if(isStockAvailable){
-  try {
+  if (isStockAvailable) {
+    try {
 
-    for (const book of cartItems.value) {
+      for (const book of cartItems.value) {
 
-      const bookData = await getBookFromID(book);
-      const newStock = bookData.stock - 1;
-      const updateResponse = await updateStockInDB(book, newStock);
+        const bookData = await getBookFromID(book);
+        const newStock = bookData.stock - 1;
+        const updateResponse = await updateStockInDB(book, newStock);
 
-      if (!updateResponse.ok) {
-        throw new Error(`Failed to update stock for book ID ${book.id}`);
-      }
-    } // END OF LOOP
+        if (!updateResponse.ok) {
+          throw new Error(`Failed to update stock for book ID ${book.id}`);
+        }
+      } // END OF LOOP
 
-    alert('Books bought!');
-    cartItems.value = [];
-    localStorage.setItem('books', JSON.stringify(cartItems.value));
-    window.dispatchEvent(new Event('basket-updated')); // Ensure the event is dispatched when buying books
-    window.location.reload(); // Reload the page
+      alert('Books bought!');
+      cartItems.value = [];
+      localStorage.setItem('books', JSON.stringify(cartItems.value));
+      window.dispatchEvent(new Event('basket-updated')); // Ensure the event is dispatched when buying books
+      window.location.reload(); // Reload the page
 
-  } catch (error) {
-    console.error('Failed to update stock:', error);
-  }
+    } catch (error) {
+      console.error('Failed to update stock:', error);
+    }
   }
 };
 
@@ -121,7 +119,7 @@ const bookCounts = computed(() => {
     if (counts[book.id]) {
       counts[book.id].count++;
     } else {
-      counts[book.id] = { ...book, count: 1 };
+      counts[book.id] = {...book, count: 1};
     }
   }
   return Object.values(counts);
@@ -133,28 +131,30 @@ const totalPrice = computed(() => {
 
 </script>
 
-
 <template>
-  <div>
-    <h1>Shopping Cart</h1>
-    <ul>
-
-      <li v-for="book in bookCounts" :key="book.id">
-        <h2>{{ book.title }} ({{ book.count }})</h2>
-        <button class="remove-button" @click="removeBook(book.id)"> - </button>
-        <AddToCartButton :book="book" :stock="book.stock" @add-to-cart="updateCart">
+  <div class="max-w-md mx-auto mt-2 bg-white rounded-lg overflow-auto md:max-w-lg">
+    <div class="px-5 py-2 border-b border-gray-200">
+      <h2 class="font-semibold text-gray-800">Shopping Cart</h2>
+    </div>
+    <div class="flex flex-col divide-y divide-gray-200">
+      <div v-for="book in bookCounts" :key="book.id" class="flex items-center py-4 px-6">
+        <div class="ml-3">
+          <h3 class="text-gray-900 font-semibold">{{ book.title }} ({{ book.count }})</h3>
+          <p class="text-gray-700 mt-1">{{ book.price }} kr</p>
+        </div>
+        <button @click.stop="removeBook(book.id)" class="ml-auto py-2 px-4 bg-red-500 hover:bg-red-600 text-white rounded">
+          -
+        </button>
+        <AddToCartButton @click.stop :book="book" :stock="book.stock" @add-to-cart="updateCart" class="py-2 px-4">
           +
         </AddToCartButton>
-
-      </li>
-      <button class="checkout-button" @click="buyBooks">Check Out</button>
-    </ul>
-
-    <p>Total Price: {{ totalPrice }}</p>
-    <button class="checkout-button" @click="buyBooks">Check Out</button>
-
+      </div>
+    </div>
+    <div class="flex items-center justify-between px-6 py-3 bg-gray-100">
+      <h3 class="text-gray-900 font-semibold">Total: {{ totalPrice }} kr</h3>
+      <button id="checkout-button" @click="buyBooks" class="py-2 px-4 bg-blue-500 hover:bg-blue-600 text-white rounded-lg">
+        Checkout
+      </button>
+    </div>
   </div>
 </template>
-<style scoped>
-
-</style>
