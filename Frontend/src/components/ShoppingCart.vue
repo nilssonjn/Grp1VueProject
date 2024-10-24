@@ -152,7 +152,7 @@ const totalPrice = computed(() => {
     </div>
     <div class="flex items-center justify-between px-6 py-3 bg-gray-100">
       <h3 class="text-gray-900 font-semibold">Total: {{ totalPrice }} kr</h3>
-      <button id="checkout-button" @click="buyBooks" class="py-2 px-4 bg-blue-500 hover:bg-blue-600 text-white rounded-lg">
+      <button @click="buyBooks" class="py-2 px-4 bg-blue-500 hover:bg-blue-600 text-white rounded-lg">
         Checkout
       </button>
     </div>

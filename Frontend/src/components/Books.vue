@@ -51,25 +51,6 @@ onMounted(async () => {
 
 </script>
 
-<!--original template-->
-
-<!--<template>-->
-<!--  <div class="bookList">-->
-<!--    <ul>-->
-
-<!--      <li v-for="book in books.slice(0, props.limit)" :key="book.id">-->
-<!--        <h3>{{ book.title }}</h3>-->
-<!--        <img :src="book.image" alt="book cover" @click="BookDetail(book)"/>-->
-<!--        <p>{{ book.author }}</p>-->
-<!--        <AddToCartButton-->
-<!--            :book="book"-->
-<!--            :stock="book.stock"-->
-<!--            @add-to-cart="addToCart"-->
-<!--        />-->
-<!--      </li>-->
-<!--    </ul>-->
-<!--  </div>-->
-<!--</template>-->
 <template>
   <section id="Books"
            class="w-fit mx-auto grid grid-cols-1 lg:grid-cols-3
@@ -81,9 +62,9 @@ onMounted(async () => {
              class="h-full w-full object-cover"/>
       </div>
       <div class="px-4 py-3">
-        <span class="text-gray-400 mr-3 uppercase text-xs">{{ book.author }}</span>
+        <span class="text-gray-400 mr-3 uppercase text-xs truncate block">{{ book.author }}</span>
         <p class="text-lg font-bold text-black truncate block capitalize">{{ book.title }}</p>
-        <div class="flex items-center">
+        <div class="flex flex-col">
           <p class="text-lg font-semibold text-black cursor-auto my-3">{{ book.price }} kr</p>
           <AddToCartButton
               :book="book"
