@@ -1,4 +1,5 @@
 <script setup>
+import { RouterLink } from "vue-router";
 
 </script>
 
@@ -6,7 +7,7 @@
   <footer class="flex flex-col space-y-10 justify-center m-10">
 
     <nav class="flex justify-center flex-wrap gap-6 text-gray-500 font-medium">
-      <a class="hover:text-gray-900" href="#">Home</a>
+      <RouterLink class="hover:text-gray-900" to="/category/home">Home</RouterLink>
       <a class="hover:text-gray-900" href="#">About</a>
       <a class="hover:text-gray-900" href="#">Services</a>
       <a class="hover:text-gray-900" href="#">Contact</a>
