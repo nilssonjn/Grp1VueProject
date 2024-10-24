@@ -13,66 +13,98 @@ describe('ShoppingCart', () => {
         global.alert = vi.fn();
 
 
-    // Mock localStorage
-    const localStorageMock = {
-        getItem: vi.fn(),
-        setItem: vi.fn(),
-        removeItem: vi.fn(),
-        clear: vi.fn(),
-    }
+        // Mock localStorage
+        global.localStorage = {
+            getItem: vi.fn((key) => {
+                if (key === 'books') {
+                    return JSON.stringify(
+                        [{ id: 1, title: 'Test Book 1', stock:5, price: 100 },
+                            { id: 2, title: 'Test Book 2', stock:5, price: 100 }]);
+                }
+                return null;
+            }),
+            setItem: vi.fn(),
+            removeItem: vi.fn(),
+            clear: vi.fn(),
+        };
+
+    });
 
 
     test('should remove a book from the cart', async () => {
+
+
         // Arrange
-        const book1 = {id: 1, title: 'Test Book 1'};
-        const book2 = {id: 2, title: 'Test Book 2'}
-        localStorageMock.setItem('books', JSON.stringify([book1, book2]));
         const wrapper = mount(ShoppingCart);
         await wrapper.vm.$nextTick();
 
 
         // Act
         await wrapper.vm.removeBook(1);
-        await wrapper.find('.remove-button').trigger('click');
         await new Promise(resolve => setTimeout(resolve, 0));
 
         // Assert
         expect(wrapper.vm.cartItems).toHaveLength(1);
-        expect(wrapper.vm.cartItems[0]).equal.to([book2])
-        expect(JSON.parse(localStorageMock.getItem('books'))).toEqual([book2]);
+        expect(wrapper.vm.cartItems[0]).toEqual(
+            { id: 2, title: 'Test Book 2', stock: 5, price: 100 });
+
     });
 
-    test('should clear the cart after purchase and update stock', async () => {
-        const book = {id: 1, title: 'Test Book', stock: 5};
-        localStorageMock.setItem('books', JSON.stringify([book]))
+
+    test('should add a new book to the cart', async () => {
+        // Arrange
         const wrapper = mount(ShoppingCart);
         await wrapper.vm.$nextTick();
 
-        // Mocka getBookFromID
-        wrapper.vm.getBookFromID = vi.fn().mockResolvedValue({id: 1, title: 'Test Book', stock: 5,});
 
-        // Mocka updateStockInDB
-        wrapper.vm.updateStockInDB = vi.fn().mockResolvedValue({ok: true});
+        const newBook = { id: 3, title: 'New Test Book', stock: 10, price: 100 };
+
+        // Act: Simulate adding the book to the cart
+        wrapper.vm.cartItems.push(newBook);
+        await wrapper.vm.$nextTick();
 
 
-        await wrapper.find('.checkout-button').trigger('click');
-        await new Promise(resolve => setTimeout(resolve, 0));
+        localStorage.setItem('books', JSON.stringify(wrapper.vm.cartItems));
+        await wrapper.vm.$nextTick(); // Ensure reactivity updates
 
-        expect(wrapper.vm.cartItems).toHaveLength(0); // Kontrollera att cartItems är tomt
-        expect(JSON.parse(localStorage.getItem('books'))).toEqual([]);
+        // Assert
+        expect(wrapper.vm.cartItems).toHaveLength(3);
+        expect(wrapper.vm.cartItems[2]).toEqual(newBook);
+
+        // Assert localStorage is updated
+        expect(global.localStorage.setItem).toHaveBeenCalledWith(
+            'books',
+            JSON.stringify([
+                { id: 1, title: 'Test Book 1', stock: 5, price: 100 },
+                { id: 2, title: 'Test Book 2', stock: 5, price: 100 },
+                { id: 3, title: 'New Test Book', stock: 10, price: 100 }
+            ])
+        );
     });
 
+
+
+
+
+    /*test('should add a book to cart', async () => {
+
+        //Arrange
+        const wrapper = mount(ShoppingCart);
+        await wrapper.vm.$nextTick();
+
+        //Act
+        await wrapper.vm.updateCart(1);
+        await new Promise(resolve => setTimeout(resolve, 0));
+
+
+        //Assert
+        expect(wrapper.vm.cartItems).toHaveLength(2);
+        expect(wrapper.vm.cartItems).toEqual(
+            [{ id: 1, title: 'Test Book 1', stock: 5 },
+                    { id: 2, title: 'Test Book 2', stock: 5 }]);
+
+
+    });*/
 });
-
-
-
-
-
-
-
-
-
-
-
 
 

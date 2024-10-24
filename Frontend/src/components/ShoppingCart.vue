@@ -11,7 +11,7 @@ const updateCart = () => {
 
 onMounted(() => {
   updateCart();
-  window.addEventListener('basket-updated', updateCart);
+  //window.addEventListener('basket-updated', updateCart);
 });
 
 // const removeBook = (index) => {
