@@ -44,42 +44,6 @@ onMounted(async () => {
 });
 </script>
 
-<!--<template>-->
-<!--  <section id="Bookdetail"-->
-<!--           class="w-fit mx-auto grid grid-cols-1-->
-<!--           justify-items-center justify-center gap-y-20 gap-x-14 mt-10 mb-5">-->
-<!--    <div class="w-90">-->
-<!--      <div v-if="book">-->
-<!--        <img :src="book.image" alt="book cover" class="h-82 w-72 object-cover px-4 py-3"/>-->
-<!--        <div class="px-4 py-3 w-90">-->
-<!--          <AddToCartButton-->
-<!--              :book="book"-->
-<!--              :stock="book.stock"-->
-<!--              @add-to-cart="addToCart"-->
-<!--          />-->
-<!--          -->
-<!--          <p class="text-lg font-bold text-black truncate block capitalize py-2">{{ book.title }}</p>-->
-<!--          <div class="bg-gray-100 p-4 rounded-md">-->
-<!--            <p>Author: {{ book.author || 'Ingen författare tillgänglig' }}</p>-->
-<!--            <p>Available: {{ book.stock }}</p>-->
-<!--            <p>Published: {{ book.publishyear || 'Inget publiceringsdatum tillgänglig' }}</p>-->
-<!--            <p>ISBN: {{ book.isbn }}</p>-->
-<!--            <p>Price: {{ book.price }} kr</p>-->
-<!--          </div>-->
-<!--          <br>-->
-<!--          <div class="bg-gray-100 p-4 rounded-md">-->
-<!--            <p>Summary: {{ book.summary }}</p>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--      <div v-else>-->
-<!--        <p>Laddar bokinformation...</p>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </section>-->
-<!--</template>-->
-
-
 <template>
   <div class="bg-white py-8">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
