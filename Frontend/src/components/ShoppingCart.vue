@@ -131,29 +131,6 @@ const totalPrice = computed(() => {
 
 </script>
 
-<!--original template-->
-<!--<template>-->
-<!--  <div>-->
-<!--    <h1>Shopping Cart</h1>-->
-<!--    <ul>-->
-
-<!--      <li v-for="book in bookCounts" :key="book.id">-->
-<!--        <h2>{{ book.title }} ({{ book.count }})</h2>-->
-<!--        <button @click="removeBook(book.id)"> -</button>-->
-<!--        <AddToCartButton :book="book" :stock="book.stock" @add-to-cart="updateCart">-->
-<!--          +-->
-<!--        </AddToCartButton>-->
-
-<!--      </li>-->
-<!--      <button class="checkout-button" @click="buyBooks">Check Out</button>-->
-<!--    </ul>-->
-
-<!--    <p>Total Price: {{ totalPrice }}</p>-->
-<!--    <button @click="buyBooks">Check Out</button>-->
-
-<!--  </div>-->
-<!--</template>-->
-
 <template>
   <div class="max-w-md mx-auto mt-2 bg-white rounded-lg overflow-auto md:max-w-lg">
     <div class="px-5 py-2 border-b border-gray-200">
@@ -165,10 +142,10 @@ const totalPrice = computed(() => {
           <h3 class="text-gray-900 font-semibold">{{ book.title }} ({{ book.count }})</h3>
           <p class="text-gray-700 mt-1">{{ book.price }} kr</p>
         </div>
-        <button @click="removeBook(book.id)" class="ml-auto py-2 px-4 bg-red-500 hover:bg-red-600 text-white rounded">
+        <button @click.stop="removeBook(book.id)" class="ml-auto py-2 px-4 bg-red-500 hover:bg-red-600 text-white rounded">
           -
         </button>
-        <AddToCartButton :book="book" :stock="book.stock" @add-to-cart="updateCart" class="py-2 px-4">
+        <AddToCartButton @click.stop :book="book" :stock="book.stock" @add-to-cart="updateCart" class="py-2 px-4">
           +
         </AddToCartButton>
       </div>
