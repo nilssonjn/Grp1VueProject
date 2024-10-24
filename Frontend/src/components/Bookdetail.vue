@@ -78,14 +78,18 @@ onMounted(async () => {
               :stock="book.stock"
               @add-to-cart="addToCart"
           />
-          <p class="text-lg font-bold text-black truncate block capitalize">Title: {{ book.title }}</p>
-          <p>Author: {{ book.author || 'Ingen författare tillgänglig' }}</p>
-          <p>Available: {{book.stock}}</p>
-          <p>Published: {{ book.publishyear || 'Inget publiceringsdatum tillgänglig' }}</p>
-          <p>ISBN: {{book.isbn}}</p>
-          <p>Price: {{book.price}} kr</p>
+          <p class="text-lg font-bold text-black truncate block capitalize py-2">{{ book.title }}</p>
+          <div class="bg-gray-100 p-4 rounded-md">
+            <p>Author: {{ book.author || 'Ingen författare tillgänglig' }}</p>
+            <p>Available: {{ book.stock }}</p>
+            <p>Published: {{ book.publishyear || 'Inget publiceringsdatum tillgänglig' }}</p>
+            <p>ISBN: {{ book.isbn }}</p>
+            <p>Price: {{ book.price }} kr</p>
+          </div>
           <br>
-          <p>Summary: {{ book.summary }}</p>
+          <div class="bg-gray-100 p-4 rounded-md">
+            <p>Summary: {{ book.summary }}</p>
+          </div>
         </div>
       </div>
       <div v-else>

@@ -59,7 +59,7 @@ onMounted(async () => {
          class="w-72 bg-white shadow-md rounded-xl overflow-hidden duration-500 hover:scale-105 hover:shadow-xl">
       <div class="w-full h-72">
         <img :src="book.image" alt="book cover" @click="BookDetail(book)"
-             class="h-full w-full object-cover"/>
+             class="h-full w-full object-contain"/>
       </div>
       <div class="px-4 py-3">
         <span class="text-gray-400 mr-3 uppercase text-xs truncate block">{{ book.author }}</span>
