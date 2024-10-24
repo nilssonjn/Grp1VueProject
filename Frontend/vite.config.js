@@ -12,16 +12,9 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
+  },
+  server: {
+    open: '/category/home'
   }
 })
-  /*
-  server: {
-    proxy: {
-      '/api': {
-        target: 'https://openlibrary.org/search.json?q=books&limit=10',
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, '')
-      }
-    }
-  }
-})*/
+
