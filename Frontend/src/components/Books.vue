@@ -1,5 +1,6 @@
-,<script setup>
-import { ref, onMounted } from 'vue';
+,
+<script setup>
+import {ref, onMounted} from 'vue';
 import router from "@/router/index.js";
 import AddToCartButton from "@/components/AddToCartButton.vue";
 
@@ -12,10 +13,10 @@ const updatedBooks = ref([]);
 
 function BookDetail(book) {
   //router.push({ name: 'bookdetail', params: { id: book.key.split('/').pop() } });
-  router.push({ name: 'books', params: { id: book.id }});
+  router.push({name: 'books', params: {id: book.id}});
 }
 
-const props  = defineProps({
+const props = defineProps({
   limit: Number,
   name: String,
 });
@@ -50,36 +51,49 @@ onMounted(async () => {
 
 </script>
 
+<!--original template-->
 
+<!--<template>-->
+<!--  <div class="bookList">-->
+<!--    <ul>-->
+
+<!--      <li v-for="book in books.slice(0, props.limit)" :key="book.id">-->
+<!--        <h3>{{ book.title }}</h3>-->
+<!--        <img :src="book.image" alt="book cover" @click="BookDetail(book)"/>-->
+<!--        <p>{{ book.author }}</p>-->
+<!--        <AddToCartButton-->
+<!--            :book="book"-->
+<!--            :stock="book.stock"-->
+<!--            @add-to-cart="addToCart"-->
+<!--        />-->
+<!--      </li>-->
+<!--    </ul>-->
+<!--  </div>-->
+<!--</template>-->
 <template>
-  <h1>Books</h1>
-  <div class="bookList">
-    <ul>
-
-      <li v-for="book in books.slice(0, props.limit)" :key="book.id">
-        <h3>{{ book.title }}</h3>
-        <img :src="book.image" alt="book cover" @click="BookDetail(book)"/>
-        <p>{{ book.author }}</p>
-        <AddToCartButton
-            :book="book"
-            :stock="book.stock"
-            @add-to-cart="addToCart"
-        />
-      </li>
-    </ul>
-  </div>
-
+  <section id="Books"
+           class="w-fit mx-auto grid grid-cols-1 lg:grid-cols-3
+           md:grid-cols-2 justify-items-center justify-center gap-y-10 gap-x-10 mt-10 mb-5">
+    <div v-for="book in books.slice(0, props.limit)" :key="book.id"
+         class="w-72 bg-white shadow-md rounded-xl overflow-hidden duration-500 hover:scale-105 hover:shadow-xl">
+      <div class="w-full h-72">
+        <img :src="book.image" alt="book cover" @click="BookDetail(book)"
+             class="h-full w-full object-cover"/>
+      </div>
+      <div class="px-4 py-3">
+        <span class="text-gray-400 mr-3 uppercase text-xs">{{ book.author }}</span>
+        <p class="text-lg font-bold text-black truncate block capitalize">{{ book.title }}</p>
+        <div class="flex items-center">
+          <p class="text-lg font-semibold text-black cursor-auto my-3">{{ book.price }} kr</p>
+          <AddToCartButton
+              :book="book"
+              @add-to-cart="addToCart"/>
+          <div class="ml-auto">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </template>
 
-<style scoped>
 
-.bookList {
-  display: grid;
-  flex-direction: row;
-  grid-template-columns: repeat(5, 1fr);
-  border: #181818 solid 1px;
-}
-
-
-
-</style>

@@ -18,10 +18,6 @@ const shoppingCartLink = [
   {name: 'Shopping Cart', to: '/shoppingcart', current: false}
 ]
 
-// function goToCart() {
-//   router.push({ name: 'shoppingcart' }); // Adjust to the route that matches your cart page
-// }
-
 </script>
 
 <template>
@@ -73,7 +69,10 @@ const shoppingCartLink = [
           <Menu as="div" class="relative ml-3">
             <div>
               <MenuButton
-                  class="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                  class="relative flex rounded-full bg-gray-800 text-sm
+                  focus:outline-none focus:ring-2 focus:ring-white
+                  focus:ring-offset-2 focus:ring-offset-gray-800
+                  hover:bg-gray-700 hover:text-white p-2">
                 <span class="absolute -inset-1.5"/>
                 <span class="sr-only">Open user menu</span>
                 <ShoppingCartIcon class="h-6 w-6 text-gray-400" aria-hidden="true"/>
@@ -86,10 +85,11 @@ const shoppingCartLink = [
                         leave-from-class="transform opacity-100 scale-100"
                         leave-to-class="transform opacity-0 scale-95">
               <MenuItems
-                  class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                  class="absolute right-5 z-10 mt-2 w-96 h-96 origin-top-right overflow-auto
+                  rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                 <MenuItem v-slot="{ active }"
                           :class="[active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700']">
-                  <ShoppingCart/>
+                  <ShoppingCart class="w-full h-full"/>
                 </MenuItem>
                 <MenuItem>
                   <RouterLink
