@@ -82,30 +82,6 @@ describe('ShoppingCart', () => {
             ])
         );
     });
-
-
-
-
-
-    /*test('should add a book to cart', async () => {
-
-        //Arrange
-        const wrapper = mount(ShoppingCart);
-        await wrapper.vm.$nextTick();
-
-        //Act
-        await wrapper.vm.updateCart(1);
-        await new Promise(resolve => setTimeout(resolve, 0));
-
-
-        //Assert
-        expect(wrapper.vm.cartItems).toHaveLength(2);
-        expect(wrapper.vm.cartItems).toEqual(
-            [{ id: 1, title: 'Test Book 1', stock: 5 },
-                    { id: 2, title: 'Test Book 2', stock: 5 }]);
-
-
-    });*/
 });
 
 
