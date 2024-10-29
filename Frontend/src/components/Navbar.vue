@@ -87,7 +87,7 @@ const shoppingCartLink = [
               <MenuItems
                   class="absolute right-5 z-10 mt-2 w-96 max-h-96 origin-top-right overflow-auto
                   rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                <MenuItem v-slot="{ active, close }"
+                <MenuItem v-slot="{ active }"
                           :class="[active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700']">
                   <ShoppingCart class="w-full h-full"/>
                 </MenuItem>
