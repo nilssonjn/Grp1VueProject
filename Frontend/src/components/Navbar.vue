@@ -85,20 +85,27 @@ const shoppingCartLink = [
                         leave-from-class="transform opacity-100 scale-100"
                         leave-to-class="transform opacity-0 scale-95">
               <MenuItems
-                  class="absolute right-5 z-10 mt-2 w-96 h-96 origin-top-right overflow-auto
+                  class="absolute right-5 z-10 mt-2 w-96 max-h-96 origin-top-right overflow-auto
                   rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                 <MenuItem v-slot="{ active }"
                           :class="[active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700']">
                   <ShoppingCart class="w-full h-full"/>
                 </MenuItem>
-                <MenuItem>
-                  <RouterLink
-                      v-for="item in shoppingCartLink"
-                      :key="item.name"
-                      :to="item.to"
-                      :class="[active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700']">Go to your
-                    shopping cart
-                  </RouterLink>
+                <MenuItem v-slot="{ close }">
+                  <div class="flex justify-center mt-1 mb-1">
+                    <RouterLink
+                        v-for="item in shoppingCartLink"
+                        :key="item.name"
+                        :to="item.to"
+                        @click="close"
+                        :class="[
+                        'inline-block px-4 py-2 text-sm font-semibold text-white bg-blue-500 rounded-md',
+                        'hover:bg-blue-600'
+                      ]"
+                    >
+                      Go to your shopping cart
+                    </RouterLink>
+                  </div>
                 </MenuItem>
               </MenuItems>
             </transition>

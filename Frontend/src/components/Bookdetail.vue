@@ -8,8 +8,6 @@ const bookId = route.params.id; // Använd detta ID för att hämta bokinformati
 
 const book = ref(null);
 
-//const props = defineProps(['id']);
-
 const props = defineProps({
   book: Object,
   stock: {
@@ -63,7 +61,7 @@ onMounted(async () => {
               <span class="text-black">{{ book.price }} kr</span>
             </div>
             <div>
-              <span class="font-bold text-black">Availability:</span>
+              <span class="font-bold text-black">Availability: </span>
               <span :class="{'text-red-500': book.stock < 10}" class="text-black"> {{ book.stock }}</span>
             </div>
           </div>
