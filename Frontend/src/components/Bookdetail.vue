@@ -64,7 +64,7 @@ onMounted(async () => {
             </div>
             <div>
               <span class="font-bold text-black">Availability:</span>
-              <span class="text-black"> {{ book.stock }}</span>
+              <span :class="{'text-red-500': book.stock < 10}" class="text-black"> {{ book.stock }}</span>
             </div>
           </div>
 
