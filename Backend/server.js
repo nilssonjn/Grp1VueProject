@@ -5,7 +5,6 @@ const sequelize = new Sequelize({
 })
 var db = {}
 
-// get horror books
 async function setupDB() {
     try {
         db.BookList = sequelize.define('BookList', {
@@ -43,7 +42,6 @@ async function setupDB() {
                 type: DataTypes.STRING,
                 allowNull: true
             },
-
             publishyear: {
                 type: DataTypes.INTEGER,
                 allowNull: true
