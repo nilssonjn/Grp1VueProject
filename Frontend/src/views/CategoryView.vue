@@ -4,5 +4,5 @@ import Books from "@/components/Books.vue";
 </script>
 
 <template>
-  <Books :limit="10" :name=name />
+  <Books :limit="9" :name=name />
 </template>
