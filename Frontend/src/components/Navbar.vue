@@ -3,6 +3,7 @@ import {Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuIte
 import {Bars3Icon, BookOpenIcon, XMarkIcon, ShoppingCartIcon} from '@heroicons/vue/24/outline'
 import {RouterLink, useRoute} from "vue-router";
 import ShoppingCart from "@/components/ShoppingCart.vue";
+import {ref, onMounted } from "vue";
 
 const route = useRoute();
 
@@ -17,6 +18,18 @@ const navigation = [
 const shoppingCartLink = [
   {name: 'Shopping Cart', to: '/shoppingcart', current: false}
 ]
+const cartItems =ref([]);
+const getCartItemCount = () => cartItems.value.length;
+const updateCartItems = (() => {
+  const booksInStorage = JSON.parse(localStorage.getItem('books')) || [];
+  cartItems.value = booksInStorage;
+})
+
+
+onMounted(() => {
+  updateCartItems();
+  window.addEventListener('basket-updated', updateCartItems);
+});
 
 </script>
 
@@ -76,7 +89,10 @@ const shoppingCartLink = [
                 <span class="absolute -inset-1.5"/>
                 <span class="sr-only">Open user menu</span>
                 <ShoppingCartIcon class="h-6 w-6 text-gray-400" aria-hidden="true"/>
-
+                <span v-if="getCartItemCount() > 0"
+                      class="absolute top-0 right-0 inline-flex items-center justify-center w-4 h-4 text-xs font-bold leading-none text-red-100 bg-red-600 rounded-full">
+                      {{ getCartItemCount() }}
+                </span>
               </MenuButton>
             </div>
             <transition enter-active-class="transition ease-out duration-100"
