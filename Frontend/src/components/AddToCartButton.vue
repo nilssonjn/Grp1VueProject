@@ -1,6 +1,4 @@
 <script setup>
-
-
 const emit = defineEmits(['add-to-cart', 'basket-updated']);
 
 const props = defineProps({
@@ -12,7 +10,7 @@ const addBook = () => {
   const booksInStorage = JSON.parse(localStorage.getItem('books')) || [];
   booksInStorage.push(props.book);
   localStorage.setItem('books', JSON.stringify(booksInStorage));
-  emit('add-to-cart'); // Emit event after updating local storage
+  emit('add-to-cart');
   window.dispatchEvent(new Event('basket-updated'));
 };
 </script>
@@ -22,6 +20,3 @@ const addBook = () => {
     <slot>Add to Cart</slot>
   </button>
 </template>
-
-<style scoped>
-</style>

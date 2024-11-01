@@ -3,9 +3,6 @@ import ShoppingCart from "../ShoppingCart.vue";
 import { mount } from '@vue/test-utils';
 
 
-
-
-
 describe('ShoppingCart', () => {
     beforeEach(() => {
         // Mock fetch and ale
