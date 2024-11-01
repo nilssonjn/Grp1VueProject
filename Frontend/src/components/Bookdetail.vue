@@ -4,7 +4,7 @@ import {onMounted, ref} from "vue";
 import AddToCartButton from "@/components/AddToCartButton.vue";
 
 const route = useRoute();
-const bookId = route.params.id; // Använd detta ID för att hämta bokinformation
+const bookId = route.params.id;
 
 const book = ref(null);
 

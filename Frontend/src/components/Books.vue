@@ -4,14 +4,11 @@ import {ref, onMounted} from 'vue';
 import router from "@/router/index.js";
 import AddToCartButton from "@/components/AddToCartButton.vue";
 
-
-
 const books = ref([]);
 
-const updatedBooks = ref([]);
-
 function BookDetail(book) {
-  router.push({name: 'books', params: {id: book.id}});
+  router.push({name: 'books', params: {id: book.id}
+  });
 }
 
 const props = defineProps({
@@ -25,16 +22,14 @@ onMounted(async () => {
   try {
     console.log('Fetching books for category:', props.name);
     const response = await fetch(link);
-    // Check for successful response
+
     if (!response.ok) {
       console.error("Failed to fetch books. Status:", response.status);
-      return; // Exit early if not successful to avoid potential errors
+      return;
     }
-
 
     const data = await response.json();
 
-    // Update books with fetched data, handling potential absence of "docs" property
     books.value = data;
 
     console.log('Books fetched successfully:', books.value);
