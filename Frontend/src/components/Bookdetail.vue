@@ -1,6 +1,6 @@
 <script setup>
 import {useRoute} from "vue-router";
-import {onMounted, ref, defineProps} from "vue";
+import {onMounted, ref} from "vue";
 import AddToCartButton from "@/components/AddToCartButton.vue";
 
 const route = useRoute();
@@ -8,19 +8,11 @@ const bookId = route.params.id; // Använd detta ID för att hämta bokinformati
 
 const book = ref(null);
 
-const props = defineProps({
-  book: Object,
-  stock: {
-    type: Number,
-  },
-});
-
 onMounted(async () => {
   try {
     console.log('Fetching book with ID:', bookId);
 
-    const response = await fetch(`http://localhost:3001/api/books/${bookId}`); // Använd bookId här
-    //const response = await fetch(`http://localhost:3001/api/books/${props.id}`);
+    const response = await fetch(`http://localhost:3001/api/books/${bookId}`);
     if (!response.ok) {
       console.error("Failed to fetch book. Status:", response.status);
       return;
