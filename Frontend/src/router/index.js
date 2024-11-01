@@ -12,11 +12,6 @@ const router = createRouter({
       redirect: '/category/home'
     },
     {
-      path: '/home',
-      name: 'home',
-      component: HomeView
-    },
-    {
       path: '/about',
       name: 'about',
       component: AboutView
@@ -25,7 +20,6 @@ const router = createRouter({
       path: '/books/:id',
       name:'books',
       component: Bookdetail,
-      //props: true
     },
     {
       path: '/category/:name',

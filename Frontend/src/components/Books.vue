@@ -5,14 +5,12 @@ import router from "@/router/index.js";
 import AddToCartButton from "@/components/AddToCartButton.vue";
 
 
-// list of books that will be filled by api
+
 const books = ref([]);
 
-// contains all the books with specific values picked out
 const updatedBooks = ref([]);
 
 function BookDetail(book) {
-  //router.push({ name: 'bookdetail', params: { id: book.key.split('/').pop() } });
   router.push({name: 'books', params: {id: book.id}});
 }
 
@@ -33,11 +31,10 @@ onMounted(async () => {
       return; // Exit early if not successful to avoid potential errors
     }
 
-    // Parse response as JSON
+
     const data = await response.json();
 
     // Update books with fetched data, handling potential absence of "docs" property
-    //books.value = data.docs || [];
     books.value = data;
 
     console.log('Books fetched successfully:', books.value);

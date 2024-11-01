@@ -11,14 +11,7 @@ const updateCart = () => {
 
 onMounted(() => {
   updateCart();
-  //window.addEventListener('basket-updated', updateCart);
 });
-
-// const removeBook = (index) => {
-//   cartItems.value.splice(index, 1);
-//   localStorage.setItem('books', JSON.stringify(cartItems.value));
-//   window.dispatchEvent(new Event('basket-updated')); // Ensure the event is dispatched when removing a book
-// };
 
 const removeBook = (bookId) => {
   const index = cartItems.value.findIndex(book => book.id === bookId);

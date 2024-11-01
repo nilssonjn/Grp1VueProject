@@ -1,5 +1,5 @@
 <script setup>
-import {defineEmits} from 'vue';
+
 
 const emit = defineEmits(['add-to-cart', 'basket-updated']);
 
